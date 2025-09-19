@@ -1,0 +1,39 @@
+---
+title: "Create segments"
+description: "Build dynamic segments from profile variables and tags."
+---
+
+## Overview
+
+Segments are saved queries that auto-include matching profiles.
+
+<Steps>
+<Step title="Define rules">
+  Example: `variables.plan = pro` AND `tags CONTAINS beta`.
+</Step>
+
+<Step title="Create the segment">
+  <RequestExample>
+  ```bash cURL
+  curl -X POST "https://api.example.com/segments" \
+    -H "Authorization: Bearer $API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "name": "Pro beta users",
+      "criteria": {
+        "all": [
+          {"variables.plan": {"eq": "pro"}},
+          {"tags": {"contains": "beta"}}
+        ]
+      }
+    }'
+  ```
+  </RequestExample>
+</Step>
+</Steps>
+
+<Tip>
+Prefer simple, testable criteria and document the intent in the description.
+</Tip>
+
+

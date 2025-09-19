@@ -1,0 +1,28 @@
+---
+title: "Search profiles by tags"
+description: "Find profiles that match one or more tags."
+---
+
+## Overview
+
+Query profiles that have specific tags attached.
+
+<Steps>
+<Step title="Filter by one or multiple tags">
+  <RequestExample>
+  ```bash cURL
+  curl -G "https://api.example.com/profiles/search" \
+    -H "Authorization: Bearer $API_KEY" \
+    --data-urlencode "tags=beta,vip" \
+    --data-urlencode "logic=and"
+  ```
+  </RequestExample>
+</Step>
+
+<Step title="Pagination and sorting">
+  - Use `limit` and `cursor` for pagination
+  - Sort by `last_seen_at` or `created_at`
+</Step>
+</Steps>
+
+

@@ -1,0 +1,34 @@
+---
+title: "Assign tags to a profile"
+description: "Attach one or more tags to a profile for organization."
+---
+
+## Overview
+
+Assign tags to enable filtering, messaging, and segmentation.
+
+<Steps>
+<Step title="Add tags to a profile">
+  <RequestExample>
+  ```bash cURL
+  curl -X POST "https://api.example.com/profiles/{profile_id}/tags" \
+    -H "Authorization: Bearer $API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{"tags": ["beta", "vip"]}'
+  ```
+  </RequestExample>
+
+  <ResponseExample>
+  ```json Success
+  {"id": "prof_123", "tags": ["beta", "vip"]}
+  ```
+  </ResponseExample>
+</Step>
+
+<Step title="Idempotency and conflicts">
+  - Adding an existing tag should be a no-op
+  - Unknown tags should return a clear error or be auto-created per policy
+</Step>
+</Steps>
+
+

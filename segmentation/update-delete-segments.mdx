@@ -1,0 +1,40 @@
+---
+title: "Update and delete segments"
+description: "Modify segment criteria or remove segments you no longer need."
+---
+
+## Overview
+
+Update segment names, descriptions, and criteria. Delete segments when obsolete.
+
+<Steps>
+<Step title="Update a segment">
+  <RequestExample>
+  ```bash cURL
+  curl -X PATCH "https://api.example.com/segments/{segment_id}" \
+    -H "Authorization: Bearer $API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "name": "Pro beta users (US)",
+      "criteria": {"all": [{"variables.country": {"eq": "US"}}]}
+    }'
+  ```
+  </RequestExample>
+</Step>
+
+<Step title="Delete a segment">
+  <RequestExample>
+  ```bash cURL
+  curl -X DELETE "https://api.example.com/segments/{segment_id}" \
+    -H "Authorization: Bearer $API_KEY"
+  ```
+  </RequestExample>
+</Step>
+</Steps>
+
+<Warning>
+Deleting a segment removes saved criteria but never deletes profiles.
+Ensure any automations depending on the segment are updated.
+</Warning>
+
+

@@ -1,0 +1,46 @@
+---
+title: "Create and manage tags"
+description: "Define organizational tags and keep the taxonomy clean."
+---
+
+## Overview
+
+Tags group profiles for filtering and segmentation.
+
+<Steps>
+<Step title="Create a tag">
+  <RequestExample>
+  ```bash cURL
+  curl -X POST "https://api.example.com/tags" \
+    -H "Authorization: Bearer $API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{"name": "beta", "description": "Early access users"}'
+  ```
+  </RequestExample>
+</Step>
+
+<Step title="Rename or archive a tag">
+  <RequestExample>
+  ```bash cURL
+  curl -X PATCH "https://api.example.com/tags/{tag_id}" \
+    -H "Authorization: Bearer $API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{"name": "early-access"}'
+  ```
+  </RequestExample>
+</Step>
+
+<Step title="List tags">
+  <RequestExample>
+  ```bash cURL
+  curl -X GET "https://api.example.com/tags" -H "Authorization: Bearer $API_KEY"
+  ```
+  </RequestExample>
+</Step>
+</Steps>
+
+<Tip>
+Establish naming conventions to prevent duplicates and ambiguous meanings.
+</Tip>
+
+
