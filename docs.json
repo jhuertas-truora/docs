@@ -8,6 +8,23 @@
     "dark": "#5584EB"
   },
   "favicon": "/favicon.svg",
+  "languages": [
+    {
+      "name": "English",
+      "code": "en",
+      "path": "/"
+    },
+    {
+      "name": "Español", 
+      "code": "es",
+      "path": "/es"
+    },
+    {
+      "name": "Português",
+      "code": "pt",
+      "path": "/pt"
+    }
+  ],
   "navigation": {
     "tabs": [
       {

@@ -1,0 +1,29 @@
+---
+title: "Obter perfis em um segmento"
+description: "Liste perfis que atualmente correspondem a um segmento salvo."
+---
+
+## Resumo
+
+Obtenha membros atuais de um segmento com paginação.
+
+<Steps>
+<Step title="Consultar um segmento">
+  <RequestExample>
+  ```bash cURL
+  curl -G "https://api.example.com/segments/{segment_id}/profiles" \
+    -H "Authorization: Bearer $API_KEY" \
+    --data-urlencode "limit=50"
+  ```
+  </RequestExample>
+</Step>
+
+<Step title="Campos de resposta">
+  <ResponseField name="data" type="array" required>
+  Lista de objetos de perfil.
+  </ResponseField>
+  <ResponseField name="next_cursor" type="string">
+  Cursor para buscar a próxima página.
+  </ResponseField>
+</Step>
+</Steps>

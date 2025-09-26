@@ -1,0 +1,44 @@
+---
+title: "Criar e gerenciar tags"
+description: "Defina tags organizacionais e mantenha a taxonomia limpa."
+---
+
+## Resumo
+
+Tags agrupam perfis para filtragem e segmentação.
+
+<Steps>
+<Step title="Criar uma tag">
+  <RequestExample>
+  ```bash cURL
+  curl -X POST "https://api.example.com/tags" \
+    -H "Authorization: Bearer $API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{"name": "beta", "description": "Usuários de acesso antecipado"}'
+  ```
+  </RequestExample>
+</Step>
+
+<Step title="Renomear ou arquivar uma tag">
+  <RequestExample>
+  ```bash cURL
+  curl -X PATCH "https://api.example.com/tags/{tag_id}" \
+    -H "Authorization: Bearer $API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{"name": "early-access"}'
+  ```
+  </RequestExample>
+</Step>
+
+<Step title="Listar tags">
+  <RequestExample>
+  ```bash cURL
+  curl -X GET "https://api.example.com/tags" -H "Authorization: Bearer $API_KEY"
+  ```
+  </RequestExample>
+</Step>
+</Steps>
+
+<Tip>
+Estabeleça convenções de nomenclatura para prevenir duplicatas e significados ambíguos.
+</Tip>

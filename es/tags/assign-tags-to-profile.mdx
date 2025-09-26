@@ -1,0 +1,32 @@
+---
+title: "Asignar etiquetas a un perfil"
+description: "Adjunta una o más etiquetas a un perfil para organización."
+---
+
+## Resumen
+
+Asigna etiquetas para habilitar filtrado, mensajería y segmentación.
+
+<Steps>
+<Step title="Agregar etiquetas a un perfil">
+  <RequestExample>
+  ```bash cURL
+  curl -X POST "https://api.example.com/profiles/{profile_id}/tags" \
+    -H "Authorization: Bearer $API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{"tags": ["beta", "vip"]}'
+  ```
+  </RequestExample>
+
+  <ResponseExample>
+  ```json Success
+  {"id": "prof_123", "tags": ["beta", "vip"]}
+  ```
+  </ResponseExample>
+</Step>
+
+<Step title="Idempotencia y conflictos">
+  - Agregar una etiqueta existente debe ser una operación sin efecto
+  - Las etiquetas desconocidas deben devolver un error claro o ser auto-creadas según la política
+</Step>
+</Steps>

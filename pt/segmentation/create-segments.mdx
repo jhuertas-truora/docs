@@ -1,0 +1,37 @@
+---
+title: "Criar segmentos"
+description: "Construa segmentos dinâmicos a partir de variáveis de perfil e tags."
+---
+
+## Resumo
+
+Segmentos são consultas salvas que incluem automaticamente perfis correspondentes.
+
+<Steps>
+<Step title="Definir regras">
+  Exemplo: `variables.plan = pro` E `tags CONTAINS beta`.
+</Step>
+
+<Step title="Criar o segmento">
+  <RequestExample>
+  ```bash cURL
+  curl -X POST "https://api.example.com/segments" \
+    -H "Authorization: Bearer $API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "name": "Usuários beta pro",
+      "criteria": {
+        "all": [
+          {"variables.plan": {"eq": "pro"}},
+          {"tags": {"contains": "beta"}}
+        ]
+      }
+    }'
+  ```
+  </RequestExample>
+</Step>
+</Steps>
+
+<Tip>
+Prefira critérios simples e testáveis e documente a intenção na descrição.
+</Tip>

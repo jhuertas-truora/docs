@@ -1,0 +1,105 @@
+---
+title: "Variables de Decisión"
+description: "Qué son, por qué importan, criterios de selección y casos de uso."
+---
+
+## ¿Qué son las Variables de Decisión?
+
+Las Variables de Decisión son el resultado de tomar los datos del perfil y las transacciones de cada usuario, procesarlos, estandarizarlos y convertirlos en variables recopiladas. Estas variables te permiten tomar decisiones, activar acciones, automatizar flujos de trabajo y potenciar la hiper-personalización.
+
+<Note>
+Puedes encontrar la lista actual de variables en alcance en: <strong>Decision variables priorization.xlsx</strong>
+</Note>
+
+<Info>
+Descarga el archivo aquí: <a href="/Decision%20variables%20priorization.xlsx">Decision variables priorization.xlsx</a>
+</Info>
+
+## ¿Por qué son importantes?
+
+- **Centralizan la información**: consolidan datos dispersos en variables estandarizadas y fáciles de usar.
+- **Habilitan decisiones rápidas y consistentes**: valores precalculados o automatizados reducen el tiempo de búsqueda y mejoran la eficiencia.
+- **Mejoran la personalización**: adaptan productos, servicios o procesos al perfil y comportamiento de cada usuario.
+- **Facilitan la automatización**: actúan como entradas directas para flujos automatizados y reglas de negocio.
+- **Escalabilidad entre equipos**: una vez creada, una variable puede ser reutilizada por múltiples equipos y productos, evitando reprocesamiento.
+
+## ¿Cómo se seleccionan? Criterios clave
+
+- **Relevancia para decisiones**: la variable debe aportar valor claro a un proceso, flujo o producto.
+- **Disponibilidad de datos**: las entradas requeridas deben existir y ser accesibles desde ClickHouse.
+- **Calidad y consistencia**: los datos fuente deben ser estables sin brechas críticas que socaven el uso.
+
+## ¿Qué casos de uso habilitan?
+
+- **Personalización de experiencia de usuario**.
+- **Creación de reglas** (próximamente en el producto BRE - Business Rule Engine, Q4 2025).
+- **Optimización de decisiones de flujo** (próximamente en el producto Flow Builder, Q4 2025).
+- **Integración más estrecha** con el ecosistema de productos de Truora.
+- **Entradas de motor de reglas**, tanto internas como externas.
+
+<Tip>
+Mantén un registro de variable (fuente, definición, propietario, fórmula, cadencia de actualización) para asegurar gobernanza y confiabilidad.
+</Tip>
+
+## API: Listar variables de decisión para clientes usuarios
+
+Te permite obtener variables de decisión para clientes usuarios por término de búsqueda, rango de fechas, categorías y nombres. Este endpoint soporta paginación.
+
+<RequestExample>
+```bash cURL
+curl -G "https://api.example.com/v1/customers/decision-variables" \
+  -H "Authorization: Bearer $API_KEY" \
+  --data-urlencode "search=plan" \
+  --data-urlencode "categories=engagement,monetization" \
+  --data-urlencode "names=last_purchase_at,arpu" \
+  --data-urlencode "start_date=2025-01-01" \
+  --data-urlencode "end_date=2025-01-31" \
+  --data-urlencode "start_key=eyJvZmZzZXQiOjI1fQ=="
+```
+</RequestExample>
+
+<Info>
+<strong>Método</strong>: GET &nbsp;&nbsp; <strong>Ruta</strong>: <code>/v1/customers/decision-variables</code> &nbsp;&nbsp; <strong>Estado</strong>: <code>200 OK</code>
+</Info>
+
+### Parámetros de consulta
+
+<ParamField query="categories" type="array">
+Filtrar variables de decisión por categorías. Se pueden proporcionar múltiples valores.
+</ParamField>
+
+<ParamField query="end_date" type="string">
+Fecha final para filtrar por rango de fechas (formato: YYYY-MM-DD).
+</ParamField>
+
+<ParamField query="names" type="array">
+Filtrar variables de decisión por nombres específicos. Se pueden proporcionar múltiples valores.
+</ParamField>
+
+<ParamField query="search" type="string">
+Término de búsqueda para filtrar variables de decisión por contenido de texto.
+</ParamField>
+
+<ParamField query="start_date" type="string">
+Fecha de inicio para filtrar por rango de fechas (formato: YYYY-MM-DD).
+</ParamField>
+
+<ParamField query="start_key" type="string">
+Valor de clave de inicio para paginación para continuar desde un punto específico.
+</ParamField>
+
+<ResponseExample>
+```json Success
+{
+  "items": [
+    {
+      "name": "arpu",
+      "category": "monetization",
+      "value": 12.34,
+      "computed_at": "2025-01-15T10:30:00Z"
+    }
+  ],
+  "next_start_key": "eyJvZmZzZXQiOjUw fQ=="
+}
+```
+</ResponseExample>

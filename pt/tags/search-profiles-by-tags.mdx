@@ -1,0 +1,26 @@
+---
+title: "Buscar perfis por tags"
+description: "Encontre perfis que tenham tags específicas anexadas."
+---
+
+## Resumo
+
+Consulte perfis que tenham tags específicas anexadas.
+
+<Steps>
+<Step title="Filtrar por uma ou múltiplas tags">
+  <RequestExample>
+  ```bash cURL
+  curl -G "https://api.example.com/profiles/search" \
+    -H "Authorization: Bearer $API_KEY" \
+    --data-urlencode "tags=beta,vip" \
+    --data-urlencode "logic=and"
+  ```
+  </RequestExample>
+</Step>
+
+<Step title="Paginação e ordenação">
+  - Use `limit` e `cursor` para paginação
+  - Ordene por `last_seen_at` ou `created_at`
+</Step>
+</Steps>

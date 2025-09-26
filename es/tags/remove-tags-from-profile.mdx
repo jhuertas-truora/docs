@@ -1,0 +1,34 @@
+---
+title: "Eliminar etiquetas de un perfil"
+description: "Desconecta una o más etiquetas de un perfil."
+---
+
+## Resumen
+
+Elimina etiquetas cuando ya no apliquen.
+
+<Steps>
+<Step title="Eliminar etiquetas específicas">
+  <RequestExample>
+  ```bash cURL
+  curl -X DELETE "https://api.example.com/profiles/{profile_id}/tags" \
+    -H "Authorization: Bearer $API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{"tags": ["beta"]}'
+  ```
+  </RequestExample>
+</Step>
+
+<Step title="Eliminar todas las etiquetas">
+  <RequestExample>
+  ```bash cURL
+  curl -X DELETE "https://api.example.com/profiles/{profile_id}/tags/all" \
+    -H "Authorization: Bearer $API_KEY"
+  ```
+  </RequestExample>
+</Step>
+</Steps>
+
+<Info>
+Mantén registros de auditoría al modificar etiquetas para cumplimiento y trazabilidad.
+</Info>

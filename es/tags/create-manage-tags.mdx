@@ -1,0 +1,44 @@
+---
+title: "Crear y gestionar etiquetas"
+description: "Define etiquetas organizacionales y mantén la taxonomía limpia."
+---
+
+## Resumen
+
+Las etiquetas agrupan perfiles para filtrado y segmentación.
+
+<Steps>
+<Step title="Crear una etiqueta">
+  <RequestExample>
+  ```bash cURL
+  curl -X POST "https://api.example.com/tags" \
+    -H "Authorization: Bearer $API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{"name": "beta", "description": "Usuarios de acceso temprano"}'
+  ```
+  </RequestExample>
+</Step>
+
+<Step title="Renombrar o archivar una etiqueta">
+  <RequestExample>
+  ```bash cURL
+  curl -X PATCH "https://api.example.com/tags/{tag_id}" \
+    -H "Authorization: Bearer $API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{"name": "early-access"}'
+  ```
+  </RequestExample>
+</Step>
+
+<Step title="Listar etiquetas">
+  <RequestExample>
+  ```bash cURL
+  curl -X GET "https://api.example.com/tags" -H "Authorization: Bearer $API_KEY"
+  ```
+  </RequestExample>
+</Step>
+</Steps>
+
+<Tip>
+Establece convenciones de nomenclatura para prevenir duplicados y significados ambiguos.
+</Tip>

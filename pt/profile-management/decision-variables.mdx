@@ -1,0 +1,105 @@
+---
+title: "Variáveis de Decisão"
+description: "O que são, por que importam, critérios de seleção e casos de uso."
+---
+
+## O que são Variáveis de Decisão?
+
+As Variáveis de Decisão são o resultado de pegar os dados de perfil e transação de cada usuário, processá-los, padronizá-los e transformá-los em variáveis curadas. Essas variáveis permitem que você tome decisões, acione ações, automatize fluxos de trabalho e potencialize a hiper-personalização.
+
+<Note>
+Você pode encontrar a lista atual de variáveis em escopo em: <strong>Decision variables priorization.xlsx</strong>
+</Note>
+
+<Info>
+Baixe o arquivo aqui: <a href="/Decision%20variables%20priorization.xlsx">Decision variables priorization.xlsx</a>
+</Info>
+
+## Por que são importantes?
+
+- **Centralizam informações**: consolidam dados dispersos em variáveis padronizadas e fáceis de usar.
+- **Habilitam decisões rápidas e consistentes**: valores pré-calculados ou automatizados reduzem tempo de consulta e melhoram eficiência.
+- **Melhoram personalização**: adaptam produtos, serviços ou processos ao perfil e comportamento de cada usuário.
+- **Facilitam automação**: atuam como entradas diretas para fluxos automatizados e regras de negócio.
+- **Escalabilidade entre equipes**: uma vez criada, uma variável pode ser reutilizada por múltiplas equipes e produtos, evitando reprocessamento.
+
+## Como são selecionadas? Critérios chave
+
+- **Relevância para decisões**: a variável deve entregar valor claro a um processo, fluxo ou produto.
+- **Disponibilidade de dados**: as entradas necessárias devem existir e ser acessíveis do ClickHouse.
+- **Qualidade e consistência**: dados fonte devem ser estáveis sem lacunas críticas que comprometam o uso.
+
+## Que casos de uso habilitam?
+
+- **Personalização de experiência do usuário**.
+- **Criação de regras** (em breve no produto BRE - Business Rule Engine, Q4 2025).
+- **Otimização de decisões de fluxo** (em breve no produto Flow Builder, Q4 2025).
+- **Integração mais estreita** com o ecossistema de produtos da Truora.
+- **Entradas de motor de regras**, tanto internas quanto externas.
+
+<Tip>
+Mantenha um registro de variável (fonte, definição, proprietário, fórmula, cadência de atualização) para garantir governança e confiabilidade.
+</Tip>
+
+## API: Listar variáveis de decisão para clientes usuários
+
+Permite obter variáveis de decisão para clientes usuários por termo de busca, intervalo de datas, categorias e nomes. Este endpoint suporta paginação.
+
+<RequestExample>
+```bash cURL
+curl -G "https://api.example.com/v1/customers/decision-variables" \
+  -H "Authorization: Bearer $API_KEY" \
+  --data-urlencode "search=plan" \
+  --data-urlencode "categories=engagement,monetization" \
+  --data-urlencode "names=last_purchase_at,arpu" \
+  --data-urlencode "start_date=2025-01-01" \
+  --data-urlencode "end_date=2025-01-31" \
+  --data-urlencode "start_key=eyJvZmZzZXQiOjI1fQ=="
+```
+</RequestExample>
+
+<Info>
+<strong>Método</strong>: GET &nbsp;&nbsp; <strong>Caminho</strong>: <code>/v1/customers/decision-variables</code> &nbsp;&nbsp; <strong>Status</strong>: <code>200 OK</code>
+</Info>
+
+### Parâmetros de consulta
+
+<ParamField query="categories" type="array">
+Filtrar variáveis de decisão por categorias. Múltiplos valores podem ser fornecidos.
+</ParamField>
+
+<ParamField query="end_date" type="string">
+Data final para filtrar por intervalo de datas (formato: YYYY-MM-DD).
+</ParamField>
+
+<ParamField query="names" type="array">
+Filtrar variáveis de decisão por nomes específicos. Múltiplos valores podem ser fornecidos.
+</ParamField>
+
+<ParamField query="search" type="string">
+Termo de busca para filtrar variáveis de decisão por conteúdo de texto.
+</ParamField>
+
+<ParamField query="start_date" type="string">
+Data de início para filtrar por intervalo de datas (formato: YYYY-MM-DD).
+</ParamField>
+
+<ParamField query="start_key" type="string">
+Valor de chave de início para paginação para continuar de um ponto específico.
+</ParamField>
+
+<ResponseExample>
+```json Success
+{
+  "items": [
+    {
+      "name": "arpu",
+      "category": "monetization",
+      "value": 12.34,
+      "computed_at": "2025-01-15T10:30:00Z"
+    }
+  ],
+  "next_start_key": "eyJvZmZzZXQiOjUw fQ=="
+}
+```
+</ResponseExample>
