@@ -8,27 +8,12 @@
     "dark": "#5584EB"
   },
   "favicon": "/favicon.svg",
-  "languages": [
-    {
-      "name": "English",
-      "code": "en",
-      "path": "/"
-    },
-    {
-      "name": "Español", 
-      "code": "es",
-      "path": "/es"
-    },
-    {
-      "name": "Português",
-      "code": "pt",
-      "path": "/pt"
-    }
-  ],
+  "defaultLanguage": "en",
+  "languages": ["en", "es", "pt"],
   "navigation": {
-    "tabs": [
+    "languages": [
       {
-        "tab": "Guides",
+        "language": "en",
         "groups": [
           {
             "group": "Getting started",
@@ -36,22 +21,21 @@
               "index",
               "profiles",
               "transactions"
-
             ]
           },
           {
             "group": "Using Tags",
             "pages": [
+              "tags/introduction",
+              "tags/managing-tags-of-a-profile",
               "tags/create-manage-tags",
-              "tags/assign-tags-to-profile",
-              "tags/remove-tags-from-profile",
-              "tags/search-profiles-by-tags"
+              "tags/managing-tags-via-api"
             ]
           },
           {
             "group": "Segmentation Tool",
             "pages": [
-
+              "segmentation/introduction",
               "segmentation/create-segments",
               "segmentation/get-segment-profiles",
               "segmentation/update-delete-segments"
@@ -65,42 +49,305 @@
               "profile-management/customer-transactions"
             ]
           }
+        ],
+        "tabs": [
+          {
+            "tab": "Guides",
+            "groups": [
+              {
+                "group": "Getting started",
+                "pages": [
+                  "index",
+                  "profiles",
+                  "transactions"
+                ]
+              },
+              {
+                "group": "Using Tags",
+                "pages": [
+                  "tags/introduction",
+                  "tags/create-manage-tags",
+                  "tags/managing-tags-of-a-profile",
+                  "tags/managing-tags-via-api"
+                ]
+              },
+              {
+                "group": "Segmentation Tool",
+                "pages": [
+                  "segmentation/introduction",
+                  "segmentation/create-segments",
+                  "segmentation/get-segment-profiles",
+                  "segmentation/update-delete-segments"
+                ]
+              },
+              {
+                "group": "Profile Management",
+                "pages": [
+                  "profile-management/get-profile-data",
+                  "profile-management/decision-variables",
+                  "profile-management/customer-transactions"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API playbook",
+            "groups": [
+              {
+                "group": "API documentation",
+                "pages": [
+                  "api-reference/introduction"
+                ]
+              },
+              {
+                "group": "getting a customers and his variables",
+                "pages": [
+                  "api-reference/endpoint/customers/getCustomers",
+                  "api-reference/endpoint/customers/getOneCustomer"
+                ]
+              },
+              {
+                "group": "tagging a profile and his transactions",
+                "pages": [
+                  "api-reference/endpoint/tags/getCustomerTagsHistory",
+                  "api-reference/endpoint/tags/updateCustomerTags"
+                ]
+              },
+              {
+                "group": "creating a segment and retriving the populations",
+                "pages": [
+                  "api-reference/endpoint/segments/getAllSegments",
+                  "api-reference/endpoint/segments/createNewSegment",
+                  "api-reference/endpoint/segments/getCustomersOfASegment"
+                  
+                ]
+              }
+            ]
+          }
         ]
       },
       {
-        "tab": "API playbook",
+        "language": "es",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Getting started",
             "pages": [
-              "api-reference/introduction"
+              "es/index",
+              "es/profiles",
+              "es/transactions"
             ]
           },
           {
-            "group": "getting a profile, his variables and transactions",
+            "group": "Using Tags",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "es/tags/introduction",
+              "es/tags/managing-tags-of-a-profile",
+              "es/tags/create-manage-tags",
+              "es/tags/managing-tags-via-api"
             ]
           },
           {
-            "group": "tagging a profile and his transactions",
+            "group": "Segmentation Tool",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "es/segmentation/introduction",
+              "es/segmentation/create-segments",
+              "es/segmentation/get-segment-profiles",
+              "es/segmentation/update-delete-segments"
             ]
           },
           {
-            "group": "creating a segment and retriving the populations",
+            "group": "Profile Management",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "es/profile-management/get-profile-data",
+              "es/profile-management/decision-variables",
+              "es/profile-management/customer-transactions"
+            ]
+          }
+        ],
+        "tabs": [
+          {
+            "tab": "Guides",
+            "groups": [
+              {
+                "group": "Getting started",
+                "pages": [
+                  "es/index",
+                  "es/profiles",
+                  "es/transactions"
+                ]
+              },
+              {
+                "group": "Using Tags",
+                "pages": [
+                  "es/tags/introduction",
+                  "es/tags/create-manage-tags",
+                  "es/tags/managing-tags-of-a-profile",
+                  "es/tags/managing-tags-via-api"
+                ]
+              },
+              {
+                "group": "Segmentation Tool",
+                "pages": [
+                  "es/segmentation/introduction",
+                  "es/segmentation/create-segments",
+                  "es/segmentation/get-segment-profiles",
+                  "es/segmentation/update-delete-segments"
+                ]
+              },
+              {
+                "group": "Profile Management",
+                "pages": [
+                  "es/profile-management/get-profile-data",
+                  "es/profile-management/decision-variables",
+                  "es/profile-management/customer-transactions"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API playbook",
+            "groups": [
+              {
+                "group": "API documentation",
+                "pages": [
+                  "es/api-reference/introduction"
+                ]
+              },
+              {
+                "group": "getting a profile and his variables",
+                "pages": [
+                  "es/api-reference/endpoint/customers/getCustomers",
+                  "es/api-reference/endpoint/customers/getOneCustomer"
+                ]
+              },
+              {
+                "group": "tagging a profile and his transactions",
+                "pages": [
+                  "es/api-reference/endpoint/tags/getCustomerTagsHistory",
+                  "es/api-reference/endpoint/tags/updateCustomerTags"
+                ]
+              },
+              {
+                "group": "creating a segment and retriving the populations",
+                "pages": [
+                  "es/api-reference/endpoint/segments/getAllSegments",
+                  "es/api-reference/endpoint/segments/createNewSegment",
+                  "es/api-reference/endpoint/segments/getCustomersOfASegment"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "language": "pt",
+        "groups": [
+          {
+            "group": "Getting started",
+            "pages": [
+              "pt/index",
+              "pt/profiles",
+              "pt/transactions"
+            ]
+          },
+          {
+            "group": "Using Tags",
+            "pages": [
+              "pt/tags/introduction",
+              "pt/tags/create-manage-tags",
+              "pt/tags/managing-tags-of-a-profile",
+              "pt/tags/managing-tags-via-api"
+            ]
+          },
+          {
+            "group": "Segmentation Tool",
+            "pages": [
+              "pt/segmentation/introduction",
+              "pt/segmentation/create-segments",
+              "pt/segmentation/get-segment-profiles",
+              "pt/segmentation/update-delete-segments"
+            ]
+          },
+          {
+            "group": "Profile Management",
+            "pages": [
+              "pt/profile-management/get-profile-data",
+              "pt/profile-management/decision-variables",
+              "pt/profile-management/customer-transactions"
+            ]
+          }
+        ],
+        "tabs": [
+          {
+            "tab": "Guides",
+            "groups": [
+              {
+                "group": "Getting started",
+                "pages": [
+                  "pt/index",
+                  "pt/profiles",
+                  "pt/transactions"
+                ]
+              },
+              {
+                "group": "Using Tags",
+                "pages": [
+                  "pt/tags/introduction",
+                  "pt/tags/create-manage-tags",
+                  "pt/tags/managing-tags-of-a-profile",
+                  "pt/tags/managing-tags-via-api"
+                ]
+              },
+              {
+                "group": "Segmentation Tool",
+                "pages": [
+                  "pt/segmentation/introduction",
+                  "pt/segmentation/create-segments",
+                  "pt/segmentation/get-segment-profiles",
+                  "pt/segmentation/update-delete-segments"
+                ]
+              },
+              {
+                "group": "Profile Management",
+                "pages": [
+                  "pt/profile-management/get-profile-data",
+                  "pt/profile-management/decision-variables",
+                  "pt/profile-management/customer-transactions"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API playbook",
+            "groups": [
+              {
+                "group": "API documentation",
+                "pages": [
+                  "pt/api-reference/introduction"
+                ]
+              },
+              {
+                "group": "getting a profile and his variables",
+                "pages": [
+                  "pt/api-reference/endpoint/customers/getCustomers",
+                  "pt/api-reference/endpoint/customers/getOneCustomer"
+                ]
+              },
+              {
+                "group": "tagging a profile",
+                "pages": [
+                  "pt/api-reference/endpoint/tags/getCustomerTagsHistory",
+                  "pt/api-reference/endpoint/tags/updateCustomerTags"
+                ]
+              },
+              {
+                "group": "creating a segment and retriving the populations",
+                "pages": [
+                  "pt/api-reference/endpoint/segments/getAllSegments",
+                  "pt/api-reference/endpoint/segments/createNewSegment",
+                  "pt/api-reference/endpoint/segments/getCustomersOfASegment"
+                ]
+              }
             ]
           }
         ]
@@ -109,13 +356,13 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
+          "anchor": "API v1",
+          "href": "https://dev.truora.com/docs/",
           "icon": "book-open-cover"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
+          "anchor": "Other guides",
+          "href": "https://dev.truora.com/guides/",
           "icon": "newspaper"
         }
       ]
@@ -128,8 +375,8 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "https://truora.atlassian.net/servicedesk/customer/portal/1"
+        "label": "Zapsign docs",
+        "href": "https://docs.zapsign.com.br/english/getting-started"
       }
     ],
     "primary": {
@@ -140,19 +387,20 @@
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {
       "linkedin": "https://www.linkedin.com/company/truora/"
     }
-  }
+  },
+  "openapi": "/api-reference/openapi.json"
 }

@@ -2,36 +2,34 @@
 title: "Crear segmentos"
 description: "Construye segmentos dinámicos a partir de variables de perfil y etiquetas."
 ---
+Nuestra Plataforma de Datos de Clientes (CDP) actualmente consolida la información de usuarios en perfiles detallados y calcula variables de decisión basadas en interacciones. Sin embargo, carece de un componente de segmentación dinámica que permita agrupar usuarios según criterios específicos alineados con los objetivos del cliente.
 
-## Resumen
+Las herramientas de segmentación permiten a los equipos de negocio identificar audiencias objetivo, como "clientes de alto valor" o "usuarios propensos al abandono", y ejecutar acciones automatizadas con precisión. Esto respalda campañas personalizadas y toma de decisiones estratégicas de manera ágil.
 
-Los segmentos son consultas guardadas que incluyen automáticamente perfiles coincidentes.
+## Estructura de Reglas
 
-<Steps>
-<Step title="Definir reglas">
-  Ejemplo: `variables.plan = pro` Y `tags CONTAINS beta`.
-</Step>
+Las reglas de segmentación se definen usando una sintaxis JSONLogic extendida (también utilizada en el Motor de Reglas de Negocio). Los operadores disponibles incluyen:
 
-<Step title="Crear el segmento">
-  <RequestExample>
-  ```bash cURL
-  curl -X POST "https://api.example.com/segments" \
-    -H "Authorization: Bearer $API_KEY" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "name": "Usuarios beta pro",
-      "criteria": {
-        "all": [
-          {"variables.plan": {"eq": "pro"}},
-          {"tags": {"contains": "beta"}}
-        ]
-      }
-    }'
-  ```
-  </RequestExample>
-</Step>
-</Steps>
+| Operador | Tipo       | Descripción                                        |
+| -------- | ---------- | -------------------------------------------------- |
+| AND      | Lógico     | Verdadero si todas las reglas en el array se satisfacen       |
+| OR       | Lógico     | Verdadero si al menos una regla en el array se satisface|
+| NOT      | Lógico     | Verdadero si la regla anidada no se satisface           |
+| =        | Aritmético | Igual a                                           |
+| &gt;     | Aritmético | Mayor que                                       |
+| &lt;     | Aritmético | Menor que                                          |
+| &gt;=    | Aritmético | Mayor o igual                                   |
+| &lt;=    | Aritmético | Menor o igual                                      |
 
-<Tip>
-Prefiere criterios simples y comprobables y documenta la intención en la descripción.
-</Tip>
+Las variables y etiquetas se referencian usando:
+
+| Palabra clave | Descripción                        |
+|---------------|------------------------------------|
+| VAR     | Se refiere a una variable de decisión en la regla |
+| TAG     | Se refiere a una etiqueta en la regla        |
+
+## Lógica de Anidamiento
+
+Soporta un nivel de anidamiento para operadores lógicos.
+
+Permite reglas como A AND (B OR C) o A OR (B AND C) pero no anidamiento más profundo.

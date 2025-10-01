@@ -3,92 +3,31 @@ title: 'Perfiles'
 description: 'Previsualiza cambios localmente para actualizar tu documentación'
 ---
 
-<Info>
-  **Prerrequisitos**:
-  - Node.js versión 19 o superior
-  - Un repositorio de documentación con un archivo `docs.json`
-</Info>
+Un perfil representa la vista unificada de un usuario individual o cliente. Se construye consolidando información de múltiples fuentes y transacciones a través de la CDP. Los perfiles te permiten entender quiénes son tus usuarios, cómo interactúan con tus productos y cómo evolucionan a lo largo del tiempo.
 
-Sigue estos pasos para instalar y ejecutar Mintlify en tu sistema operativo.
+Los perfiles no son estáticos; se actualizan continuamente a medida que fluyen nuevos datos. Esto asegura una vista en tiempo real y completa que soporta personalización, targeting, evaluación de riesgo y análisis.
 
-<Steps>
-<Step title="Instalar la CLI de Mintlify">
+## Conceptos centrales
 
-```bash
-npm i -g mint
-```
-</Step>
+- Identificadores: Claves que conectan datos a un perfil.
+- IDs duros: Identificadores únicos como ID nacional o email.
+- IDs blandos: No siempre únicos, como números de teléfono.
+- IDs internos: Identificadores a nivel de sistema (ej. ID de proceso, ID de cuenta).
+- Transacciones: Cada acción que un usuario realiza en tus productos genera datos que alimentan su perfil.
 
-<Step title="Previsualizar localmente">
 
-Navega a tu directorio de documentación donde se encuentra tu archivo `docs.json`, y ejecuta el siguiente comando:
+## Cómo funcionan los perfiles
 
-```bash
-mint dev
-```
+1. Ingesta de datos: La información se captura de múltiples tablas de productos o fuentes.
+2. Procesamiento de eventos: Los streams y parsers transforman datos en bruto en transacciones estructuradas.
+3. Construcción de perfiles: Las transacciones y variables de decisión se emparejan con perfiles existentes vía identificadores o se usan para crear nuevos.
+4. Almacenamiento: Los perfiles y sus atributos se almacenan en tablas estructuradas para consultas rápidas.
+5. Actualizaciones continuas: A medida que llegan nuevos eventos, los perfiles se enriquecen en tiempo real.
 
-Una previsualización local de tu documentación estará disponible en `http://localhost:3000`.
+## Por qué importan los perfiles
 
-</Step>
-</Steps>
-
-## Puertos personalizados
-
-Por defecto, Mintlify usa el puerto 3000. Puedes personalizar el puerto en el que ejecuta Mintlify usando la bandera `--port`. Por ejemplo, para ejecutar Mintlify en el puerto 3333, usa este comando:
-
-```bash
-mint dev --port 3333
-```
-
-Si intentas ejecutar Mintlify en un puerto que ya está en uso, usará el siguiente puerto disponible:
-
-```md
-El puerto 3000 ya está en uso. Intentando 3001 en su lugar.
-```
-
-## Versiones de Mintlify
-
-Ten en cuenta que cada lanzamiento de CLI está asociado con una versión específica de Mintlify. Si tu previsualización local no coincide con la versión de producción, por favor actualiza la CLI:
-
-```bash
-npm mint update
-```
-
-## Validando enlaces
-
-La CLI puede ayudar con la validación de enlaces en tu documentación. Para identificar enlaces rotos, usa el siguiente comando:
-
-```bash
-mint broken-links
-```
-
-## Despliegue
-
-Si el despliegue es exitoso, deberías ver lo siguiente:
-
-<Frame>
-  <img src="/images/checks-passed.png" alt="Captura de pantalla de un mensaje de confirmación de despliegue que dice Todas las verificaciones han pasado." style={{ borderRadius: '0.5rem' }} />
-</Frame>
-
-## Formato de código
-
-Sugerimos usar extensiones en tu IDE para reconocer y formatear MDX. Si eres usuario de VSCode, considera la [extensión MDX VSCode](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx) para resaltado de sintaxis, y [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) para formateo de código.
-
-## Solución de problemas
-
-<AccordionGroup>
-  <Accordion title='Error: No se pudo cargar el módulo "sharp" usando el runtime darwin-arm64'>
-
-    Esto puede deberse a una versión desactualizada de node. Prueba lo siguiente:
-    1. Elimina la versión actualmente instalada de la CLI: `npm remove -g mint`
-    2. Actualiza a Node v19 o superior.
-    3. Reinstala la CLI: `npm i -g mint`
-  </Accordion>
-
-  <Accordion title="Problema: Encontrando un error desconocido">
-  
-    Solución: Ve a la raíz de tu dispositivo y elimina la carpeta `~/.mintlify`. Luego ejecuta `mint dev` nuevamente.
-  </Accordion>
-</AccordionGroup>
-
-¿Curioso sobre qué cambió en la última versión de CLI? Consulta el [registro de cambios de CLI](https://www.npmjs.com/package/mintlify?activeTab=versions).
+- Vista única del cliente: Centraliza todas las interacciones del usuario en un lugar.
+- Segmentación: Agrupa usuarios dinámicamente basado en atributos o comportamientos compartidos.
+- Personalización: Adapta productos, servicios o mensajería al contexto de cada usuario.
+- Toma de decisiones: Usa variables y reglas para automatizar flujos de trabajo o activar acciones.
+- Análisis: Mide impacto, evalúa riesgo y optimiza estrategias con datos confiables.

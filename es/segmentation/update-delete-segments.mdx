@@ -3,36 +3,6 @@ title: "Actualizar y eliminar segmentos"
 description: "Modifica criterios de segmento o elimina segmentos que ya no necesites."
 ---
 
-## Resumen
-
-Actualiza nombres, descripciones y criterios de segmento. Elimina segmentos cuando sean obsoletos.
-
-<Steps>
-<Step title="Actualizar un segmento">
-  <RequestExample>
-  ```bash cURL
-  curl -X PATCH "https://api.example.com/segments/{segment_id}" \
-    -H "Authorization: Bearer $API_KEY" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "name": "Usuarios beta pro (US)",
-      "criteria": {"all": [{"variables.country": {"eq": "US"}}]}
-    }'
-  ```
-  </RequestExample>
-</Step>
-
-<Step title="Eliminar un segmento">
-  <RequestExample>
-  ```bash cURL
-  curl -X DELETE "https://api.example.com/segments/{segment_id}" \
-    -H "Authorization: Bearer $API_KEY"
-  ```
-  </RequestExample>
-</Step>
-</Steps>
-
 <Warning>
-Eliminar un segmento remueve criterios guardados pero nunca elimina perfiles.
-Asegúrate de que cualquier automatización que dependa del segmento sea actualizada.
+Esta página está actualmente en construcción. El contenido y los ejemplos se están finalizando.
 </Warning>

@@ -1,0 +1,48 @@
+---
+title: "Gestionar etiquetas vía API"
+description: "Aprende cómo gestionar etiquetas de clientes programáticamente a través de la API."
+---
+
+## Resumen
+
+Esta guía cubre cómo gestionar etiquetas de clientes usando los endpoints de la API. Puedes crear, actualizar y recuperar información de etiquetas programáticamente.
+
+## Endpoints de la API
+
+### Obtener Historial de Etiquetas del Cliente
+
+Recupera el historial completo de cambios de etiquetas para un cliente específico.
+
+<RequestExample>
+```bash cURL
+curl -X GET "https://api.example.com/customers/{customer_id}/tags/history" \
+  -H "Authorization: Bearer $API_KEY"
+```
+</RequestExample>
+
+### Actualizar Etiquetas del Cliente
+
+Agregar o eliminar etiquetas del perfil de un cliente.
+
+<RequestExample>
+```bash cURL
+curl -X PATCH "https://api.example.com/customers/{customer_id}/tags" \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "add": ["vip", "premium"],
+    "remove": ["trial"]
+  }'
+```
+</RequestExample>
+
+## Mejores Prácticas
+
+- Usa operaciones por lotes cuando sea posible para minimizar las llamadas a la API
+- Siempre valida los nombres de las etiquetas antes de aplicarlas
+- Mantén registros de auditoría de los cambios de etiquetas para cumplimiento
+- Usa convenciones de nomenclatura consistentes en toda tu organización
+
+## Referencia de la API
+
+Para documentación detallada de la API, consulta la sección de [API playbook](/es/api-reference/introduction) sobre endpoints de etiquetado.

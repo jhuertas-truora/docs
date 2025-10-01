@@ -1,0 +1,81 @@
+---
+title: "Introduction to tags"
+description: "Learn about profile tagging and how to use tags in the CDP."
+---
+
+## Overview
+
+Profile tagging is a fundamental component of the CDP that enables customer classification and segmentation by assigning specific labels (tags). These tags act as markers representing key attributes, behaviors, or characteristics of a customer profile, facilitating the creation of dynamic audiences and the execution of personalized actions.
+
+## Key Principles:
+
+- Dynamic and Updatable: Tags are dynamic and can change throughout the customer lifecycle, reflecting their current stage, interests, and behavior. The API must allow for the agile addition and removal of tags.
+- Actionable and Insightful: The primary goal of tagging is to provide useful information that can be leveraged for both data analysis and the activation of campaigns and real-time personalization.
+
+## What Use Cases Do Tags Enable?
+- User segmentation for personalized campaigns.
+- Creating rules that trigger automated actions based on a tag.
+- Audience analysis to uncover patterns and behaviors.
+- Enhancing the effectiveness of data-driven decision-making.
+
+-----
+
+## Anatomy of a Tag (Based on the API Structure)
+
+Each tag in our system is not just a name; it's an object with multiple properties that provide rich information about its meaning, origin, and context. Below is a detailed breakdown of the tag object structure.
+
+### `name` - `string, mandatory`
+
+* **Description:** The human-readable label for the tag. This serves as its primary identifier.
+* **Purpose:** Defines the profile's attribute, segment, or state.
+* **Example:**
+    ```json
+    {
+      "name": "Cliente nuevo"
+    }
+    ```
+
+### `source` - `string, mandatory`
+
+* **Description:** Indicates the product where the tag originated.
+* **Purpose:** Allows you to differentiate between tags assigned globally to a profile and those that come from specific interactions.
+* **Possible Values:**
+    * `profile`: The tag was assigned directly to the customer's profile and is persistent.
+    * `engagement-chat`: The tag was assigned during a specific chat conversation.
+
+### `source_type` - `string, mandatory`
+
+* **Description:** A more specific classification that complements the `source` field.
+* **Purpose:** Provides granularity to understand the exact assignment mechanism.
+* **Possible Values:**
+    * `profile-tag`: Confirms it is a general profile tag.
+    * `engagement-chat-tag`: Confirms it is a tag assigned within the context of a chat.
+
+### `color` - `string, optional`
+
+* **Description:** A hexadecimal color code associated with the tag.
+* **Purpose:** Primarily used for visual representation in user interfaces (UI), such as agent consoles or dashboards, to help users quickly identify tags.
+* **Example:**
+    ```json
+    {
+      "color": "#ff4f14"
+    }
+    ```
+
+### `chat_id` - `string, conditional`
+
+* **Description:** A unique identifier that links the tag to a specific chat conversation.
+* **Purpose:** Crucial for traceability. It lets you know the exact conversation in which a tag was assigned, which is vital for auditing and analyzing interactions.
+
+<InfoBox type="info">
+  **Conditional Field:** The `chat_id` field will **only be present** in the tag object if the `source` is `"engagement-chat"`.
+</InfoBox>
+
+* **Example:**
+    ```json
+    {
+      "chat_id": "EN_CHT_01J7GRBGMZAFAMR3XYWJZQEK47"
+    }
+    ```
+
+

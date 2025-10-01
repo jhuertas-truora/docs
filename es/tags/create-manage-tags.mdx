@@ -1,44 +1,39 @@
 ---
 title: "Crear y gestionar etiquetas"
-description: "Define etiquetas organizacionales y mantén la taxonomía limpia."
+description: "Una guía paso a paso sobre cómo ver, agregar y gestionar etiquetas en el perfil de un usuario."
 ---
 
-## Resumen
+### Acceder al Editor de Etiquetas
 
-Las etiquetas agrupan perfiles para filtrado y segmentación.
+Para comenzar a modificar las etiquetas de un usuario, primero debes abrir el modal de gestión de etiquetas desde su perfil.
 
-<Steps>
-<Step title="Crear una etiqueta">
-  <RequestExample>
-  ```bash cURL
-  curl -X POST "https://api.example.com/tags" \
-    -H "Authorization: Bearer $API_KEY" \
-    -H "Content-Type: application/json" \
-    -d '{"name": "beta", "description": "Usuarios de acceso temprano"}'
-  ```
-  </RequestExample>
-</Step>
+1. En la página del perfil del usuario, localiza la lista de etiquetas asignadas bajo "Información de contacto".
+2. Haz clic en el enlace **"Gestionar etiquetas"** directamente debajo de las píldoras de etiquetas.
 
-<Step title="Renombrar o archivar una etiqueta">
-  <RequestExample>
-  ```bash cURL
-  curl -X PATCH "https://api.example.com/tags/{tag_id}" \
-    -H "Authorization: Bearer $API_KEY" \
-    -H "Content-Type: application/json" \
-    -d '{"name": "early-access"}'
-  ```
-  </RequestExample>
-</Step>
+Esta acción abrirá una ventana modal que por defecto muestra la pestaña **"Editar etiquetas"**. Esta pantalla es el centro de control donde puedes agregar, eliminar y crear nuevas etiquetas para el usuario.
 
-<Step title="Listar etiquetas">
-  <RequestExample>
-  ```bash cURL
-  curl -X GET "https://api.example.com/tags" -H "Authorization: Bearer $API_KEY"
-  ```
-  </RequestExample>
-</Step>
-</Steps>
+![El modal "Editar etiquetas" que se abre después de hacer clic en "Gestionar etiquetas"](../../images/tagsGuide/editTag.png)
 
-<Tip>
-Establece convenciones de nomenclatura para prevenir duplicados y significados ambiguos.
-</Tip>
+### Crear una Nueva Etiqueta
+
+Si una etiqueta que necesitas no existe, puedes crearla sobre la marcha desde el modal "Editar etiquetas" sin salir del perfil del usuario.
+
+1. **Iniciar Creación:** Comienza escribiendo el nombre deseado para tu nueva etiqueta en el campo **"Etiquetas de usuario"**. Mientras escribes, si ninguna etiqueta existente coincide con tu texto, aparecerá una opción "Crear etiqueta" en el menú desplegable.
+
+    ![Opción de crear etiqueta apareciendo después de escribir un nuevo nombre](../../images/tagsGuide/creatingNewTag.png)
+
+2. **Definir Propiedades:** Hacer clic en "Crear etiqueta" abre un nuevo modal. Aquí, definirás el **Nombre** de la etiqueta y seleccionarás un **Color de etiqueta** de la paleta disponible.
+
+    ![Modal de creación de nueva etiqueta con opciones de nombre y color](../../images/tagsGuide/customizingTag.png)
+
+3. **Confirmar Creación:** Haz clic en el botón **"+ Crear etiqueta"** para finalizar el proceso. La nueva etiqueta será creada en el sistema y automáticamente asignada al perfil del usuario actual. Recuerda hacer clic en **"Guardar"** en la ventana principal de edición para aplicar el cambio.
+
+### Auditar Cambios con Historial de Etiquetas
+
+El modal de gestión de etiquetas también proporciona un rastro de auditoría completo de todos los cambios realizados a las etiquetas de un usuario a lo largo del tiempo. Para acceder a él, haz clic en la pestaña **"Historial de etiquetas"**.
+
+![Pestaña de historial de etiquetas mostrando un registro cronológico de cambios a las etiquetas de un usuario](../../images/tagsGuide/tagHistory.png)
+
+* **Registro Cronológico:** El historial se muestra como una línea de tiempo, con el cambio más reciente en la parte superior.
+* **Entradas con Marca de Tiempo:** Cada cambio se registra con una fecha y hora precisas, permitiéndote saber exactamente cuándo ocurrió una modificación.
+* **Estado de las Etiquetas:** Cada entrada muestra el conjunto completo de etiquetas que el usuario tenía *después* de que ese cambio específico se guardó, proporcionando un rastro de auditoría completo de cómo su perfil ha evolucionado.

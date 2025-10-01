@@ -1,0 +1,67 @@
+---
+title: "Introducción a las etiquetas"
+description: "Aprende sobre el etiquetado de perfiles y cómo usar etiquetas en el CDP."
+---
+
+## Resumen
+
+El etiquetado de perfiles es un componente fundamental del CDP que permite la clasificación y segmentación de clientes mediante la asignación de etiquetas específicas (tags). Estas etiquetas actúan como marcadores que representan atributos clave, comportamientos o características de un perfil de cliente, facilitando la creación de audiencias dinámicas y la ejecución de acciones personalizadas.
+
+## Principios Clave:
+
+- **Dinámico y Actualizable**: Las etiquetas son dinámicas y pueden cambiar a lo largo del ciclo de vida del cliente, reflejando su etapa actual, intereses y comportamiento. La API debe permitir la adición y eliminación ágil de etiquetas.
+- **Accionable e Informativo**: El objetivo principal del etiquetado es proporcionar información útil que pueda ser aprovechada tanto para el análisis de datos como para la activación de campañas y personalización en tiempo real.
+
+## ¿Qué Casos de Uso Habilitan las Etiquetas?
+- Segmentación de usuarios para campañas personalizadas.
+- Creación de reglas que activan acciones automatizadas basadas en una etiqueta.
+- Análisis de audiencias para descubrir patrones y comportamientos.
+- Mejora de la efectividad de la toma de decisiones basada en datos.
+
+## Tipos de Etiquetas
+
+### Etiquetas de Comportamiento
+Estas etiquetas se asignan basándose en las acciones que un usuario ha realizado en tu plataforma. Ejemplos incluyen:
+- `active-user`: Usuarios que han interactuado recientemente
+- `high-engagement`: Usuarios con alta participación
+- `churn-risk`: Usuarios que muestran señales de abandono
+
+### Etiquetas de Segmentación Demográfica
+Estas etiquetas categorizan usuarios basándose en características demográficas:
+- `premium-customer`: Clientes con planes premium
+- `enterprise`: Clientes empresariales
+- `trial-user`: Usuarios en período de prueba
+
+### Etiquetas de Estado del Producto
+Estas etiquetas reflejan el estado actual del usuario en relación con tu producto:
+- `onboarding-complete`: Usuarios que han completado el proceso de incorporación
+- `feature-adopter`: Usuarios que han adoptado nuevas funcionalidades
+- `support-required`: Usuarios que necesitan asistencia
+
+## Mejores Prácticas para Etiquetado
+
+### Convenciones de Nomenclatura
+- **Consistencia**: Usa un formato consistente para todas las etiquetas (ej., kebab-case: `high-value-customer`)
+- **Claridad**: Los nombres deben ser autoexplicativos y fáciles de entender
+- **Escalabilidad**: Considera cómo las etiquetas crecerán con tu negocio
+
+### Gestión de Etiquetas
+- **Auditoría Regular**: Revisa periódicamente las etiquetas para eliminar las obsoletas
+- **Documentación**: Mantén documentación clara sobre el propósito de cada etiqueta
+- **Control de Acceso**: Define quién puede crear, modificar y eliminar etiquetas
+
+## Integración con Otros Componentes
+
+Las etiquetas se integran estrechamente con otros componentes del CDP:
+
+- **Segmentación**: Las etiquetas son la base para crear segmentos dinámicos
+- **Personalización**: Se utilizan para personalizar experiencias de usuario
+- **Automatización**: Pueden activar flujos de trabajo automatizados
+- **Analytics**: Proporcionan dimensiones para análisis y reportes
+
+## Próximos Pasos
+
+Una vez que entiendas los conceptos básicos de las etiquetas, puedes proceder a:
+1. [Crear y gestionar etiquetas](/es/tags/create-manage-tags) - Aprende a crear y gestionar etiquetas en la interfaz
+2. [Gestionar etiquetas de un perfil](/es/tags/managing-tags-of-a-profile) - Aprende a asignar etiquetas a perfiles específicos
+3. [Gestionar etiquetas vía API](/es/tags/managing-tags-via-api) - Aprende a gestionar etiquetas programáticamente

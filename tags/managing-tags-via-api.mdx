@@ -1,0 +1,70 @@
+## Developer Guide: Managing Profile Tags via API
+
+This guide outlines the two-step API workflow for programmatically managing the tags assigned to a specific user profile. The entire process, from checking a user's current status to modifying their tags, can be fully automated using two key endpoints.
+
+### Step 1: Check a Profile's Current Tag State
+
+Before adding or removing tags, it is best practice to retrieve the profile's current state to avoid redundant operations and to have a clear audit trail.
+
+The [Get customer tag history](/api-reference/endpoint/tags/getCustomerTagsHistory) endpoint provides a chronological log of all tag changes for a user, with the most recent entry representing their current set of assigned tags.
+
+* **Endpoint:** `GET /getCustomerTagsHistory`
+* **Use Case:** A backend service needs to verify if a user with ID `USP1138` is already marked with the "Churn Risk" tag before triggering a retention workflow. A call to this endpoint will provide that information.
+
+<InfoBox type="info">
+  **Reference Documentation**
+  <br />
+  For detailed parameters and response examples, check the full documentation at **[Get customer tag history](/api-reference/endpoint/tags/getCustomerTagsHistory)**.
+</InfoBox>
+
+### Step 2: Add or Remove a Profile's Tags
+
+All modifications to a user's assigned tags are handled by the [Update Customer Tags](/api-reference/endpoint/tags/updateCustomerTags) endpoint. This single endpoint is used to perform both "add" and "remove" actions.
+
+* **Endpoint:** `POST /updateCustomerTags`
+* **Use Case:** A sales representative closes a deal in the CRM. The lead's status is updated from "Prospect" to "Customer". A webhook from the CRM triggers an automated process in your backend.
+
+
+#### Automatic Tag Creation (Upsert Logic)
+
+This endpoint includes smart "upsert" (update or insert) functionality to simplify tag management. The behavior is as follows:
+
+* **When adding a tag that does not exist:** If you send an `"add"` action with a tag `name` that is not yet in the system, the endpoint will **automatically create that tag first** and then assign it to the profile. You do not need a separate "create" call.
+* **When adding a tag that already exists:** If you send an `"add"` action with a tag `name` that already exists, the endpoint **will not create a duplicate**. It will find the existing tag and simply assign it to the profile.
+* **When removing a tag:** The `"remove"` action only detaches the tag from the specified profile. It **does not delete the tag** from the overall system. The tag will still be available to be assigned to other profiles.
+
+#### Use Case: Add a Tag
+
+To assign a tag to a user, send a request specifying the user's ID and the details of the tag you want to add with the `"add"` action.
+
+* **Example:** Assign the tag "Priority Support" to a customer. If "Priority Support" doesn't exist, this call will create it and then assign it.
+    ```json
+    // POST /updateCustomerTags
+    {
+      "action": "add",
+      "name": "Priority Support",
+      "color": "#e67e22",
+      "source": "external-system",
+      "source_type": "Zendesk"
+    }
+    ```
+
+#### Use Case: Remove a Tag
+
+To remove a tag from a user, specify the name of the tag and the `"remove"` action.
+
+* **Example:** Remove the "Hot Lead" tag from a customer profile.
+    ```json
+    // POST /updateCustomerTags
+    {
+      "action": "remove",
+      "name": "Hot Lead",
+      "source": "profile"
+    }
+    ```
+
+<InfoBox type="info">
+  **Reference Documentation**
+  <br />
+  To see the complete request structure, parameters, and examples, check the documentation at **[Update Customer Tags](/api-reference/endpoint/tags/updateCustomerTags)**.
+</InfoBox>

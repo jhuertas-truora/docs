@@ -1,0 +1,51 @@
+---
+title: 'Introducción'
+description: 'Desbloquea una vista unificada de 360° del cliente. Nuestra API CDP proporciona las herramientas para gestionar programáticamente perfiles, segmentos y transacciones para aplicaciones potentes basadas en datos.'
+---
+
+¡Bienvenido a la API CDP de Truora! Esta es tu puerta de entrada a una plataforma de datos de clientes centralizada y accionable. Usa nuestros endpoints RESTful para construir integraciones, automatizar flujos de trabajo y crear experiencias personalizadas unificando perfiles de clientes, transacciones y comportamientos en un solo lugar.
+
+## ¿Por qué usar la API CDP de Truora?
+
+### 🎯 Vista Unificada del Cliente
+Accede a una vista completa de 360° de tus clientes consolidando perfiles e historial de transacciones de múltiples fuentes en una sola fuente de verdad.
+
+### ⚡ Acciones en Tiempo Real
+Aprovecha los datos en tiempo real para etiquetar perfiles, gestionar segmentos dinámicos y activar acciones personalizadas en tus aplicaciones downstream.
+
+### 🔗 Integración Perfecta
+Construida sobre principios REST y usando respuestas JSON consistentes, nuestra API está diseñada para una integración simple, segura y escalable con cualquier stack.
+
+### 🔒 Segura y Escalable
+Confía en una plataforma robusta diseñada para el rendimiento, con autenticación segura y una arquitectura escalable para crecer con tus necesidades.
+
+## Capacidades Principales
+
+Nuestra API proporciona cuatro pilares clave de funcionalidad para gestionar tus datos de clientes:
+
+- **Gestión de Perfiles:** Crea, recupera y actualiza perfiles de clientes ricos. Gestiona atributos personales, información de contacto y variables de decisión personalizadas.
+- **Seguimiento de Transacciones:** Vincula datos transaccionales, como compras o eventos clave, directamente a perfiles de clientes para enriquecer su historial.
+- **Etiquetado Inteligente:** Aplica y elimina etiquetas o etiquetas descriptivas a perfiles. Usa etiquetas para categorizar clientes e impulsar la lógica de segmentación.
+- **Segmentación Dinámica:** Crea y gestiona programáticamente segmentos dinámicos de clientes basados en atributos, etiquetas y comportamiento transaccional para acciones dirigidas.
+
+## Comenzar en 3 Pasos
+
+Ponte en marcha con tu primera llamada a la API en minutos.
+
+### 1. Obtén tu Clave de API
+La autenticación se maneja a través de una clave de API enviada en los encabezados de la solicitud. Puedes encontrar tu clave en la configuración de desarrollador de tu cuenta.
+
+<Warning>
+Trata tu clave de API como una contraseña. No la expongas en código del lado del cliente.
+</Warning>
+
+### 2. Haz tu Primera Llamada
+Usa tu clave de API y la URL base para hacer una llamada de prueba. Vamos a recuperar el primer perfil en tu cuenta usando cURL:
+
+**Solicitud: Obtener el primer perfil de cliente**
+
+```bash
+curl --request GET \
+  --url 'https://api.identity.truora.com/v1/profiles?limit=1' \
+  --header 'X-API-KEY: TU_CLAVE_API'
+```

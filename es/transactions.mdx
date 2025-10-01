@@ -3,78 +3,23 @@ title: "Transacciones"
 description: "Comienza a construir documentación increíble en minutos"
 ---
 
-## Comienza en tres pasos
+Una transacción representa un registro de una acción realizada por un usuario a través de los productos de Truora. Cada transacción captura información relevante que contribuye a construir o actualizar un perfil de usuario. Las transacciones sirven como la unidad de datos central para la toma de decisiones, evaluación de riesgo y análisis del comportamiento del usuario.
 
-Pon tu sitio de documentación funcionando localmente y haz tu primera personalización.
+## Puntos Clave:
 
-### Paso 1: Configura tu entorno local
+### Fuente de Datos
+Las transacciones se generan cada vez que un usuario interactúa con un producto o servicio de Truora.
 
-<AccordionGroup>
-  <Accordion icon="copy" title="Clona tu documentación localmente">
-    Durante el proceso de incorporación, creaste un repositorio de GitHub con el contenido de tu documentación si no tenías uno ya. Puedes encontrar un enlace a este repositorio en tu [panel de control](https://dashboard.mintlify.com).
-    
-    Para clonar el repositorio localmente para que puedas hacer y previsualizar cambios en tu documentación, sigue la guía [Clonar un repositorio](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) en la documentación de GitHub.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Inicia el servidor de previsualización">
-    1. Instala la CLI de Mintlify: `npm i -g mint`
-    2. Navega a tu directorio de documentación y ejecuta: `mint dev`
-    3. Abre `http://localhost:3000` para ver tu documentación en vivo!
-    
-    <Tip>Tu previsualización se actualiza automáticamente mientras editas archivos.</Tip>
-  </Accordion>
-</AccordionGroup>
+### Relación con Perfiles
+Cada transacción está vinculada a un perfil de usuario usando identificadores (ID Duro, ID Blando, o ID Interno), asegurando que todas las acciones estén asociadas con el individuo correcto.
 
-### Paso 2: Despliega tus cambios
+Productos de Truora que Generan Transacciones
 
-<AccordionGroup>
-  <Accordion icon="github" title="Instala nuestra aplicación de GitHub">
-    Instala la aplicación de GitHub de Mintlify desde tu [panel de control](https://dashboard.mintlify.com/settings/organization/github-app).
-    
-    Nuestra aplicación de GitHub despliega automáticamente tus cambios a tu sitio de documentación, por lo que no necesitas gestionar despliegues tú mismo.
-</Accordion>
-<Accordion icon="palette" title="Actualiza el nombre y colores de tu sitio">
-    Para un primer cambio, actualicemos el nombre y colores de tu sitio de documentación.
-
-    1. Abre `docs.json` en tu editor.
-    2. Cambia el campo `"name"` al nombre de tu proyecto.
-    3. Actualiza los `"colors"` para que coincidan con tu marca.
-    4. Guarda y ve tus cambios instantáneamente en `http://localhost:3000`.
-
-    <Tip>¡Prueba cambiar el color primario para ver una diferencia inmediata!</Tip>
-  </Accordion>
-</AccordionGroup>
-
-### Paso 3: Sal a la luz
-
-<Accordion icon="rocket" title="Publica tu documentación">
-  1. Confirma y envía tus cambios.
-  2. ¡Tu documentación se actualizará y estará en vivo en momentos!
-</Accordion>
-
-## Próximos pasos
-
-Ahora que tienes tu documentación funcionando, explora estas características clave:
-
-<CardGroup cols={2}>
-
-<Card title="Escribir Contenido" icon="pen-to-square" href="/es/essentials/markdown">
-  Aprende la sintaxis MDX y comienza a escribir tu documentación.
-</Card>
-
-<Card title="Personalizar estilo" icon="palette" href="/es/essentials/settings">
-  Haz que tu documentación coincida perfectamente con tu marca.
-</Card>
-
-<Card title="Agregar ejemplos de código" icon="square-code" href="/es/essentials/code">
-  Incluye bloques de código con resaltado de sintaxis.
-</Card>
-
-<Card title="Documentación de API" icon="code" href="/es/api-reference/introduction">
-  Genera automáticamente documentación de API desde especificaciones OpenAPI.
-</Card>
-
-</CardGroup>
-
-<Note>
-  **¿Necesitas ayuda?** Consulta nuestra [documentación completa](https://mintlify.com/docs) o únete a nuestra [comunidad](https://mintlify.com/community).
-</Note>
+- Verificación de Identidad
+- Verificación Facial
+- Verificaciones de Antecedentes
+- Formularios
+- Chats de WhatsApp
+- Firma Electrónica
+- Verificación Telefónica
+- Verificación de Email

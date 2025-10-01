@@ -3,13 +3,10 @@
 
 Decision Variables are the result of taking each user's profile and transaction data, processing and standardizing it, and turning it into curated variables. These variables enable you to make decisions, trigger actions, automate workflows, and power hyper-personalization.
 
-<Note>
-You can find the current list of in-scope variables in: <strong>Decision variables priorization.xlsx</strong>
-</Note>
+Desicion variables could be: 
 
-<Info>
-Download the file here: <a href="/Decision%20variables%20priorization.xlsx">Decision variables priorization.xlsx</a>
-</Info>
+- Primary: Directly tied to a transaction (e.g., phone score).
+- Computed: Aggregated or derived (e.g., number of successful validations).
 
 ## Why are they important?
 
@@ -37,67 +34,4 @@ Download the file here: <a href="/Decision%20variables%20priorization.xlsx">Deci
 Maintain a variable record (source, definition, owner, formula, refresh cadence) to ensure governance and reliability.
 </Tip>
 
-## API: List decision variables for user customers
-
-Allows you to obtain decision variables for user customers by search term, date range, categories, and names. This endpoint supports pagination.
-
-<RequestExample>
-```bash cURL
-curl -G "https://api.example.com/v1/customers/decision-variables" \
-  -H "Authorization: Bearer $API_KEY" \
-  --data-urlencode "search=plan" \
-  --data-urlencode "categories=engagement,monetization" \
-  --data-urlencode "names=last_purchase_at,arpu" \
-  --data-urlencode "start_date=2025-01-01" \
-  --data-urlencode "end_date=2025-01-31" \
-  --data-urlencode "start_key=eyJvZmZzZXQiOjI1fQ=="
-```
-</RequestExample>
-
-<Info>
-<strong>Method</strong>: GET &nbsp;&nbsp; <strong>Path</strong>: <code>/v1/customers/decision-variables</code> &nbsp;&nbsp; <strong>Status</strong>: <code>200 OK</code>
-</Info>
-
-### Query parameters
-
-<ParamField query="categories" type="array">
-Filter decision variables by categories. Multiple values can be provided.
-</ParamField>
-
-<ParamField query="end_date" type="string">
-End date for filtering by date range (format: YYYY-MM-DD).
-</ParamField>
-
-<ParamField query="names" type="array">
-Filter decision variables by specific names. Multiple values can be provided.
-</ParamField>
-
-<ParamField query="search" type="string">
-Search term to filter decision variables by text content.
-</ParamField>
-
-<ParamField query="start_date" type="string">
-Start date for filtering by date range (format: YYYY-MM-DD).
-</ParamField>
-
-<ParamField query="start_key" type="string">
-Start key value for pagination to continue from a specific point.
-</ParamField>
-
-<ResponseExample>
-```json Success
-{
-  "items": [
-    {
-      "name": "arpu",
-      "category": "monetization",
-      "value": 12.34,
-      "computed_at": "2025-01-15T10:30:00Z"
-    }
-  ],
-  "next_start_key": "eyJvZmZzZXQiOjUw fQ=="
-}
-```
-</ResponseExample>
-
-
+x

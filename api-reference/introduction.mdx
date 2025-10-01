@@ -1,33 +1,51 @@
 ---
 title: 'Introduction'
-description: 'This API enables you to manage create segments, profiles, variables, and transactions in a centralized way. It helps unify customer data so you can easily manage information.'
+description: 'Unlock a unified 360° customer view. Our CDP API provides the tools to programmatically manage profiles, segments, and transactions for powerful, data-driven applications.'
 ---
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
+Welcome to the Truora CDP API! This is your gateway to a centralized and actionable customer data platform. Use our RESTful endpoints to build integrations, automate workflows, and create personalized experiences by unifying customer profiles, transactions, and behaviors in one place.
 
-## Welcome
+## Why Use the Truora CDP API?
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+### 🎯 Unified Customer View
+Access a complete 360° view of your customers by consolidating profiles and transaction history from multiple sources into a single source of truth.
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+### ⚡ Real-Time Actions
+Leverage real-time data to tag profiles, manage dynamic segments, and trigger personalized actions in your downstream applications.
 
-## Authentication
+### 🔗 Seamless Integration
+Built on REST principles and using consistent JSON responses, our API is designed for simple, secure, and scalable integration with any stack.
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+### 🔒 Secure & Scalable
+Rely on a robust platform designed for performance, with secure authentication and a scalable architecture to grow with your needs.
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+## Core Capabilities
+
+Our API provides four key pillars of functionality to manage your customer data:
+
+- **Profile Management:** Create, retrieve, and update rich customer profiles. Manage personal attributes, contact information, and custom decision variables.
+- **Transaction Tracking:** Link transactional data, such as purchases or key events, directly to customer profiles to enrich their history.
+- **Intelligent Tagging:** Apply and remove descriptive tags or labels to profiles. Use tags to categorize customers and drive segmentation logic.
+- **Dynamic Segmentation:** Programmatically create and manage dynamic customer segments based on attributes, tags, and transactional behavior for targeted actions.
+
+## Getting Started in 3 Steps
+
+Get up and running with your first API call in minutes.
+
+### 1. Get Your API Key
+Authentication is handled via an API key sent in the request headers. You can find your key in your account's developer settings.
+
+<Warning>
+ Treat your API key like a password. Do not expose it in client-side code.
+</Warning>
+
+### 2. Make Your First Call
+Use your API key and the base URL to make a test call. Let's retrieve the first profile in your account using cURL:
+
+**Request: Get the first customer profile**
+
+```bash
+curl --request GET \
+  --url 'https://api.identity.truora.com/v1/profiles?limit=1' \
+  --header 'X-API-KEY: YOUR_API_KEY'
 ```

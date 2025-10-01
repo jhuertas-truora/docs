@@ -2,59 +2,39 @@
 title: "Get profile data"
 description: "Retrieve a user's profile by identifier and understand the returned fields."
 ---
+## Viewing a Customer Profile
 
-## Overview
+The customer profile page provides a comprehensive, 360-degree view of an individual, consolidating their personal information, assigned tags, and a complete history of their interactions and identity verification processes.
 
-Use this guide to retrieve profile data by unique identifier (for example, `profile_id` or `email`).
+### How to Access a Profile
 
-<Steps>
-<Step title="Prerequisites">
-  - You have a valid API key
-  - You know the profile identifier (e.g., `profile_id` or `email`)
-</Step>
+To view the detailed profile of a specific customer, follow these steps:
 
-<Step title="Make the request">
-  <RequestExample>
-  ```bash cURL
-  curl -X GET "https://api.example.com/profiles/{profile_id}" \
-    -H "Authorization: Bearer $API_KEY"
-  ```
-  </RequestExample>
+1.  Navigate to the **Customers** section from the main menu on the left sidebar.
+2.  From the customer list, click on the user you wish to view.
 
-  <ResponseExample>
-  ```json Success
-  {
-    "id": "prof_123",
-    "email": "user@example.com",
-    "created_at": "2024-01-15T10:30:00Z",
-    "variables": {
-      "first_name": "Alex",
-      "plan": "pro"
-    },
-    "tags": ["beta", "customer"]
-  }
-  ```
-  </ResponseExample>
-</Step>
+This will open the complete Profile page, which is organized into two main columns for clarity.
 
-<Step title="Understand the response">
-  <ResponseField name="id" type="string" required>
-  Unique profile identifier.
-  </ResponseField>
-  <ResponseField name="email" type="string">
-  Primary email address.
-  </ResponseField>
-  <ResponseField name="variables" type="object">
-  Custom key-value attributes associated to the profile.
-  </ResponseField>
-  <ResponseField name="tags" type="array">
-  Labels used for organization and segmentation.
-  </ResponseField>
-</Step>
-</Steps>
-
-<Tip>
-Prefer the immutable `id` over email when available to avoid lookup ambiguity.
-</Tip>
+![The complete customer profile view, showing personal data and transaction history.](../images/tagsGuide/profile.png)
 
 
+---
+
+### Profile Summary Panel (Left Side)
+
+The left column provides an at-a-glance summary of the customer's identity.
+
+* **Client Information:** Contains the user's full name.
+* **Contact Information:** Displays the user's phone number and email address. Below this, you will find the **Tags** section, which shows all the labels currently assigned to the user (e.g., "Hot", "Truorateam"). Click **Manage tags** to modify these labels.
+* **Document Information:** Lists key demographic data extracted from identity documents, such as **Nationality**, **Date of birth**, and **Gender**.
+* **User ID:** At the bottom, you'll find the unique system identifier for that customer. This ID is useful for internal tracking, support inquiries, and API calls.
+
+### Activity and History Panel (Right Side)
+
+The right column provides a detailed history of the user's activities and processes on the platform. This area is organized into tabs.
+
+* **Identity Processes Tab:** This is the default view. It shows the results of identity verification checks.
+    * **Identity Document:** Displays the images (front and back) from the most recent identity document verification transaction.
+    * **Transaction History:** Provides a detailed, chronological log of all processes and checks performed for the user. Each entry includes a precise **timestamp**, the type of check (e.g., "Background check"), its **status** (e.g., "Completed"), and a unique transaction **ID**.
+
+* **WhatsApp Conversations Tab:** This tab is available to review the history of all direct conversations with the customer through the WhatsApp channel.

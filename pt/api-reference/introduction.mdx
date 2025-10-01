@@ -1,0 +1,51 @@
+---
+title: 'Introdução'
+description: 'Desbloqueie uma visão unificada de 360° do cliente. Nossa API CDP fornece as ferramentas para gerenciar programaticamente perfis, segmentos e transações para aplicações poderosas baseadas em dados.'
+---
+
+Bem-vindo à API CDP da Truora! Esta é sua porta de entrada para uma plataforma de dados de clientes centralizada e acionável. Use nossos endpoints RESTful para construir integrações, automatizar fluxos de trabalho e criar experiências personalizadas unificando perfis de clientes, transações e comportamentos em um só lugar.
+
+## Por que usar a API CDP da Truora?
+
+### 🎯 Visão Unificada do Cliente
+Acesse uma visão completa de 360° dos seus clientes consolidando perfis e histórico de transações de múltiplas fontes em uma única fonte de verdade.
+
+### ⚡ Ações em Tempo Real
+Aproveite dados em tempo real para marcar perfis, gerenciar segmentos dinâmicos e ativar ações personalizadas em suas aplicações downstream.
+
+### 🔗 Integração Perfeita
+Construída sobre princípios REST e usando respostas JSON consistentes, nossa API é projetada para integração simples, segura e escalável com qualquer stack.
+
+### 🔒 Segura e Escalável
+Confie em uma plataforma robusta projetada para performance, com autenticação segura e uma arquitetura escalável para crescer com suas necessidades.
+
+## Capacidades Principais
+
+Nossa API fornece quatro pilares principais de funcionalidade para gerenciar seus dados de clientes:
+
+- **Gerenciamento de Perfis:** Crie, recupere e atualize perfis de clientes ricos. Gerencie atributos pessoais, informações de contato e variáveis de decisão personalizadas.
+- **Rastreamento de Transações:** Vincule dados transacionais, como compras ou eventos-chave, diretamente aos perfis de clientes para enriquecer seu histórico.
+- **Marcação Inteligente:** Aplique e remova tags ou etiquetas descritivas aos perfis. Use tags para categorizar clientes e impulsionar a lógica de segmentação.
+- **Segmentação Dinâmica:** Crie e gerencie programaticamente segmentos dinâmicos de clientes baseados em atributos, tags e comportamento transacional para ações direcionadas.
+
+## Começando em 3 Passos
+
+Coloque-se em funcionamento com sua primeira chamada à API em minutos.
+
+### 1. Obtenha sua Chave de API
+A autenticação é tratada através de uma chave de API enviada nos cabeçalhos da solicitação. Você pode encontrar sua chave nas configurações de desenvolvedor da sua conta.
+
+<Warning>
+Trate sua chave de API como uma senha. Não a exponha em código do lado do cliente.
+</Warning>
+
+### 2. Faça sua Primeira Chamada
+Use sua chave de API e a URL base para fazer uma chamada de teste. Vamos recuperar o primeiro perfil na sua conta usando cURL:
+
+**Solicitação: Obter o primeiro perfil de cliente**
+
+```bash
+curl --request GET \
+  --url 'https://api.identity.truora.com/v1/profiles?limit=1' \
+  --header 'X-API-KEY: SUA_CHAVE_API'
+```

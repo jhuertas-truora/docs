@@ -3,95 +3,48 @@ title: "Plataforma de Dados de Clientes"
 description: "Bem-vindo ao novo lar da sua documentação"
 ---
 
-## Configuração
+## Visão Geral
 
-Coloque seu site de documentação em funcionamento em minutos.
+Uma Plataforma de Dados de Clientes (CDP) é um sistema de software que coleta, unifica e organiza dados de clientes de múltiplas fontes de produtos da Truora em um perfil único, consistente e abrangente para cada cliente. Diferente de armazéns de dados tradicionais ou CRMs, uma CDP é projetada para ser acessível tanto para equipes técnicas quanto não técnicas, permitindo segmentação em tempo real, personalização e ativação de dados através de canais.
 
-<Card
-  title="Comece aqui"
-  icon="rocket"
-  href="/pt/quickstart"
-  horizontal
->
-  Siga nosso guia de início rápido de três passos.
-</Card>
+## Descrição da API
 
-## Torne-o seu
+A API de CDP fornece acesso seguro e centralizado aos dados de clientes armazenados na sua Plataforma de Dados de Clientes. Ela permite que você:
+- Recupere e gerencie perfis de clientes, incluindo atributos pessoais e variáveis de decisão.
+- Acesse e analise transações associadas a cada perfil.
+- Marque e categorize perfis com rótulos personalizados para melhorar a segmentação.
+- Crie e gerencie segmentos dinâmicos de clientes para ações direcionadas e insights.
 
-Projete um site de documentação que pareça ótimo e capacite seus usuários.
+Esta API é projetada para ajudá-lo a unificar informações do cliente, otimizar a tomada de decisões baseada em dados e ativar insights em todo o ecossistema da sua organização.
 
-<Columns cols={2}>
-  <Card
-    title="Editar localmente"
-    icon="pen-to-square"
-    href="/pt/development"
-  >
-    Edite sua documentação localmente e visualize em tempo real.
-  </Card>
-  <Card
-    title="Personalizar seu site"
-    icon="palette"
-    href="/pt/essentials/settings"
-  >
-    Personalize o design e cores do seu site para combinar com sua marca.
-  </Card>
-    <Card
-    title="Configurar navegação"
-    icon="map"
-    href="/pt/essentials/navigation"
-  >
-    Organize sua documentação para ajudar os usuários a encontrar o que precisam e ter sucesso com seu produto.
-  </Card>
-  <Card
-    title="Documentação de API"
-    icon="terminal"
-    href="/pt/api-reference/introduction"
-  >
-    Gere automaticamente documentação de API a partir de especificações OpenAPI.
-  </Card>
-</Columns>
+- Os benefícios principais incluem:
+- Acesso centralizado a dados para uma visão completa do cliente 360°.
+- Segmentação e marcação em tempo real para gerenciamento flexível de audiências.
+- Endpoints REST seguros e escaláveis com respostas JSON consistentes.
+- Design pronto para integração com plataformas de marketing, CRMs e ferramentas de análise.
 
-## Criar páginas bonitas
+## Conceitos Centrais
 
-Tudo que você precisa para criar documentação de classe mundial.
+Uma Plataforma de Dados de Clientes (CDP) é construída sobre um conjunto de conceitos centrais que definem como a informação do cliente é capturada, organizada e ativada. Entender esses conceitos é essencial para aproveitar ao máximo a API.
 
-<Columns cols={2}>
-  <Card
-    title="Escrever com MDX"
-    icon="pen-fancy"
-    href="/pt/essentials/markdown"
-  >
-    Use MDX para estilizar as páginas da sua documentação.
-  </Card>
-  <Card
-    title="Exemplos de código"
-    icon="code"
-    href="/pt/essentials/code"
-  >
-    Adicione código de exemplo para demonstrar como usar seu produto.
-  </Card>
-  <Card
-    title="Imagens"
-    icon="image"
-    href="/pt/essentials/images"
-  >
-    Exiba imagens e outras mídias.
-  </Card>
-  <Card
-    title="Fragmentos reutilizáveis"
-    icon="recycle"
-    href="/pt/essentials/reusable-snippets"
-  >
-    Escreva uma vez e reutilize em toda sua documentação.
-  </Card>
-</Columns>
+### Perfis
 
-## Precisa de inspiração?
+Um perfil representa uma identidade única de cliente na CDP. Ele consolida atributos como nome, email, informações de documentos e sinais comportamentais. Os perfis são persistentes e servem como a base de todas as interações com clientes.
 
-<Card
-  title="Ver exemplos completos"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Navegue por nosso showcase de sites de documentação excepcionais.
-</Card>
+### Transações
+
+Uma transação captura um evento ou interação associada a um cliente. As transações podem incluir compras, validações ou outras atividades relevantes para o seu negócio. Elas são marcadas com tempo e vinculadas a perfis, fornecendo uma visão histórica do comportamento do cliente e mudanças de status.
+
+### Variáveis de Decisão
+
+As variáveis de decisão são atributos dinâmicos armazenados dentro de um perfil que influenciam como um cliente é segmentado ou engajado.
+
+### Tags
+
+As tags permitem que você categorize e rotule perfis baseados em critérios personalizados, elas podem representar segmentos como "Cliente VIP", "Em Risco", ou "Nível de Engajamento: Alto".
+
+As tags facilitam a filtragem e agrupamento de perfis.
+
+### Segmentos
+
+Um segmento é uma coleção dinâmica de perfis que compartilham atributos comuns, variáveis de decisão ou tags. Os segmentos são baseados em regras e atualizados continuamente, tornando-os essenciais para personalização, direcionamento e análise. Eles também podem ser usados para acionar ações ou visualizar dados efetivamente.

@@ -1,8 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
+    "title": "Customer Data Platform API",
+    "description": "A Customer Data Platform (CDP) API that provides secure and centralized access to customer data stored in your Customer Data Platform",
     "license": {
       "name": "MIT"
     },
@@ -10,38 +10,47 @@
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
+      "url": "https://api.identity.truora.com/v1"
     }
   ],
   "security": [
     {
-      "bearerAuth": []
+      "ApiKeyAuth": []
     }
   ],
   "paths": {
-    "/plants": {
+    "/customers": {
       "get": {
-        "description": "Returns all plants from the system that the user has access to",
+        "description": "This API endpoint allows retrieving the current status and general information of all customers associated with an account.",
         "parameters": [
           {
-            "name": "limit",
+            "name": "search",
             "in": "query",
-            "description": "The maximum number of results to return",
+            "description": "Filter the list of customers by document-id, email, name and phone number",
+            "required": false,
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
+            }
+          },
+          {
+            "name": "start_key",
+            "in": "query",
+            "description": "Start key value for the pagination.",
+            "required": false,
+            "schema": {
+              "type": "string"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Plant response",
+            "description": "Customer response",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Plant"
+                    "$ref": "#/components/schemas/Customer"
                   }
                 }
               }
@@ -58,33 +67,49 @@
             }
           }
         }
-      },
-      "post": {
-        "description": "Creates a new plant in the store",
-        "requestBody": {
-          "description": "Plant to add to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
+      }
+    },
+    "/customers/{customer_id}": {
+      "get": {
+        "description": "This API endpoint allows retrieving the details of the customer identified by the provided ID.",
+        "parameters": [
+          {
+            "name": "customer_id",
+            "in": "query",
+            "description": "The customer ID is an automatically generated ID and is unique for each customer",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
-          },
-          "required": true
-        },
+          }
+        ],
         "responses": {
           "200": {
-            "description": "plant response",
+            "description": "ok",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Plant"
+                  "$ref": "#/components/schemas/GetOneCustomer"
                 }
               }
             }
           },
-          "400": {
-            "description": "unexpected error",
+          "401": {
+            "description": "unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "forbidden",
             "content": {
               "application/json": {
                 "schema": {
@@ -96,28 +121,370 @@
         }
       }
     },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
+    "/customers/{customer_id}/tag-history": {
+      "get": {
+        "description": "This endpoint allows you to consult the  information of the tags associated with a customer.",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
+            "name": "customer_id",
+            "in": "query",
+            "description": "The customer ID is an automatically generated ID and is unique for each customer",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string"
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "Plant deleted",
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCustomerTransactions"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
             "content": {}
           },
-          "400": {
-            "description": "unexpected error",
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customers/{customer_id}/tags": {
+      "put": {
+        "description": "Manages the tags associated with a customer profile. This includes adding, removing, or updating the profile's tags, and creating new tags if they do not exist.",
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "description": "Source of the tag.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "profile",
+                "engagement-chat",
+                "validation",
+                "check",
+                "contact",
+                "form",
+                "external-system"
+              ],
+              "example": "profile"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "The name of the tag to be added or removed.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "VIP Customer"
+            }
+          },
+          {
+            "name": "color",
+            "in": "query",
+            "description": "Tag color in hex format (e.g., #FF5733).",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+              "example": "#FF5733"
+            }
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "description": "The action to perform on the tag.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "add",
+                "remove"
+              ],
+              "example": "add"
+            }
+          },
+          {
+            "name": "engagement_chat_id",
+            "in": "query",
+            "description": "The unique ID of the engagement chat. This field is **required only** when the 'source' is 'engagement-chat'.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "EN_CHT_12345ABCDE"
+            }
+          },
+          {
+            "name": "source_type",
+            "in": "query",
+            "description": "The specific name of the external system. This field is **required only** when the 'source' is 'external-system'. It is used for tag traceability.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Salesforce"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCustomerTransactions"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customers/segments": {
+      "get": {
+        "description": "List customer transactions endpoint allows you to consult the detailed information of the transactions associated with a customer.",
+        "parameters": [
+          {
+            "name": "customer_id",
+            "in": "query",
+            "description": "The customer ID is an automatically generated ID and is unique for each customer",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCustomerTransactions"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "List customer transactions endpoint allows you to consult the detailed information of the transactions associated with a customer.",
+        "parameters": [
+          {
+            "name": "customer_id",
+            "in": "query",
+            "description": "The customer ID is an automatically generated ID and is unique for each customer",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCustomerTransactions"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customers/segments/profiles": {
+      "get": {
+        "description": "List customer transactions endpoint allows you to consult the detailed information of the transactions associated with a customer.",
+        "parameters": [
+          {
+            "name": "customer_id",
+            "in": "query",
+            "description": "The customer ID is an automatically generated ID and is unique for each customer",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCustomerTransactions"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customers/{customer_id}/transactions": {
+      "get": {
+        "description": "List customer transactions endpoint allows you to consult the detailed information of the transactions associated with a customer.",
+        "parameters": [
+          {
+            "name": "customer_id",
+            "in": "query",
+            "description": "The customer ID is an automatically generated ID and is unique for each customer",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCustomerTransactions"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "forbidden",
             "content": {
               "application/json": {
                 "schema": {
@@ -131,15 +498,15 @@
     }
   },
   "webhooks": {
-    "/plant/webhook": {
+    "/customers/webhook": {
       "post": {
-        "description": "Information about a new plant added to the store",
+        "description": "Information about a new customer added to the platform",
         "requestBody": {
-          "description": "Plant added to the store",
+          "description": "Customer added to the platform",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPlant"
+                "$ref": "#/components/schemas/Customer"
               }
             }
           }
@@ -154,41 +521,99 @@
   },
   "components": {
     "schemas": {
-      "Plant": {
+      "Customer": {
         "required": [
-          "name"
+          "id",
+          "name",
+          "email",
+          "transaction_id",
+          "source",
+          "status",
+          "date"
         ],
         "type": "object",
         "properties": {
-          "name": {
-            "description": "The name of the plant",
-            "type": "string"
+          "id": {
+            "description": "Unique identifier for the customer",
+            "type": "string",
+            "example": "CUS1234567890abcdef"
           },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
+          "name": {
+            "description": "Full name of the customer",
+            "type": "string",
+            "example": "JOHN DOE"
+          },
+          "country": {
+            "description": "Country code in ISO 3166-1 alpha-2 format",
+            "type": "string",
+            "example": "US"
+          },
+          "email": {
+            "description": "Customer email address",
+            "type": "string",
+            "example": "johndoe@example.com"
+          },
+          "document_number": {
+            "description": "Official identification number",
+            "type": "string",
+            "example": "123456789"
+          },
+          "document_type": {
+            "description": "Type of document used for identification",
+            "type": "string",
+            "example": "passport"
+          },
+          "birthday": {
+            "description": "Customer date of birth in ISO 8601 format",
+            "type": "string",
+            "format": "date-time",
+            "example": "1985-01-15T00:00:00Z"
+          },
+          "document_issue_date": {
+            "description": "Date when the document was issued",
+            "type": "string",
+            "format": "date-time",
+            "example": "2015-06-01T00:00:00Z"
+          },
+          "gender": {
+            "description": "Gender of the customer",
+            "type": "string",
+            "example": "male"
+          },
+          "latest_transactions": {
+            "type": "array",
+            "description": "List of the most recent transactions associated with the customer",
+            "items": {
+              "$ref": "#/components/schemas/Transaction"
+            }
+          },
+          "transaction_id": {
+            "description": "Unique identifier for the transaction",
+            "type": "string",
+            "example": "TXN001"
+          },
+          "source": {
+            "description": "Origin of the transaction",
+            "type": "string",
+            "example": "process"
+          },
+          "type": {
+            "description": "Type of validation or process performed",
+            "type": "string",
+            "example": "document-validation"
+          },
+          "status": {
+            "description": "Current status of the transaction",
+            "type": "string",
+            "example": "success"
+          },
+          "date": {
+            "description": "Timestamp of the transaction in ISO 8601 format",
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-09-29T03:56:26Z"
           }
         }
-      },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
-          },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
-          }
-        ]
       },
       "Error": {
         "required": [
@@ -205,12 +630,110 @@
             "type": "string"
           }
         }
+      },
+      "GetOneCustomer": {
+        "required": [
+          "id",
+          "name",
+          "country",
+          "email",
+          "document_number",
+          "document_type"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique identifier of the customer",
+            "type": "string"
+          },
+          "name": {
+            "description": "Full name of the customer",
+            "type": "string"
+          },
+          "country": {
+            "description": "Country code of the customer (ISO 3166-1 alpha-2)",
+            "type": "string",
+            "example": "CO"
+          },
+          "email": {
+            "description": "Email address of the customer",
+            "type": "string",
+            "format": "email"
+          },
+          "document_number": {
+            "description": "Document number of the customer",
+            "type": "string"
+          },
+          "document_type": {
+            "description": "Type of identification document",
+            "type": "string",
+            "example": "national-id"
+          },
+          "birthday": {
+            "description": "Customer birthday in ISO 8601 format",
+            "type": "string",
+            "format": "date-time"
+          },
+          "document_issue_date": {
+            "description": "Date the document was issued (ISO 8601 format)",
+            "type": "string",
+            "format": "date-time"
+          },
+          "gender": {
+            "description": "Gender of the customer",
+            "type": "string",
+            "enum": [
+              "male",
+              "female",
+              "other"
+            ]
+          },
+          "latest_transactions": {
+            "description": "List of recent transactions associated with the customer",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Transaction"
+            }
+          },
+          "document_front_url": {
+            "description": "URL to the front side of the identification document",
+            "type": "string",
+            "format": "uri"
+          },
+          "document_reverse_url": {
+            "description": "URL to the reverse side of the identification document",
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "GetCustomerTransactions": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "description": "Product that originated the transaction.",
+            "type": "string",
+            "enum": [
+              "check",
+              "process",
+              "validation",
+              "engagement-chat",
+              "profile"
+            ]
+          },
+          "start_key": {
+            "description": "Start key value for the pagination.",
+            "type": "string"
+          }
+        }
       }
     },
     "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Truora-API-Key",
+        "description": "Provide your API key in the 'Truora-API-Key' header."
       }
     }
   }

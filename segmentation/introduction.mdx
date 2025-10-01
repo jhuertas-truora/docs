@@ -1,0 +1,35 @@
+---
+title: "Introduction to segments"
+description: "Build dynamic segments from profile variables and tags."
+---
+Our Customer Data Platform (CDP) currently consolidates user information into detailed profiles and calculates decision variables based on interactions. However, it lacks a dynamic segmentation component that allows grouping users according to specific criteria aligned with client objectives.
+
+Segmentation tools allow business teams to identify target audiences, such as “high-value customers” or “users prone to churn”, and execute automated actions accurately. This supports personalized campaigns and strategic decision-making in an agile manner.
+
+## Rule Structure
+
+Segmentation rules are defined using an extended JSONLogic syntax (also used in the Business Rule Engine). Operators available include:
+
+| Operator | Type       | Description                                        |
+| -------- | ---------- | -------------------------------------------------- |
+| AND      | Logical    | True if all rules in the array are satisfied       |
+| OR       | Logical    | True if at least one rule in the array is satisfied|
+| NOT      | Logical    | True if the nested rule is not satisfied           |
+| =        | Arithmetic | Equal to                                           |
+| &gt;     | Arithmetic | Greater than                                       |
+| &lt;     | Arithmetic | Less than                                          |
+| &gt;=    | Arithmetic | Greater or equal                                   |
+| &lt;=    | Arithmetic | Less or equal                                      |
+
+Variables and tags are referenced using:
+
+| Keyword | Description                        |
+|---------|------------------------------------|
+| VAR     | Refers to a decision variable in the rule |
+| TAG     | Refers to a tag in the rule        |
+
+## Nesting Logic
+
+Supports one level of nesting for logical operators.
+
+Allows rules like A AND (B OR C) or A OR (B AND C) but not deeper nesting.

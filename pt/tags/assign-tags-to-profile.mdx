@@ -7,26 +7,6 @@ description: "Anexe uma ou mais tags a um perfil para organização."
 
 Atribua tags para habilitar filtragem, mensagens e segmentação.
 
-<Steps>
-<Step title="Adicionar tags a um perfil">
-  <RequestExample>
-  ```bash cURL
-  curl -X POST "https://api.example.com/profiles/{profile_id}/tags" \
-    -H "Authorization: Bearer $API_KEY" \
-    -H "Content-Type: application/json" \
-    -d '{"tags": ["beta", "vip"]}'
-  ```
-  </RequestExample>
-
-  <ResponseExample>
-  ```json Success
-  {"id": "prof_123", "tags": ["beta", "vip"]}
-  ```
-  </ResponseExample>
-</Step>
-
-<Step title="Idempotência e conflitos">
-  - Adicionar uma tag existente deve ser uma operação sem efeito
-  - Tags desconhecidas devem retornar um erro claro ou ser auto-criadas conforme a política
-</Step>
-</Steps>
+<Warning>
+Esta página está atualmente em construção. O conteúdo e os exemplos estão sendo finalizados.
+</Warning>

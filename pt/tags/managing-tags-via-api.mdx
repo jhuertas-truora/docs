@@ -1,0 +1,48 @@
+---
+title: "Gerenciar tags via API"
+description: "Aprenda como gerenciar tags de clientes programaticamente através da API."
+---
+
+## Resumo
+
+Este guia cobre como gerenciar tags de clientes usando os endpoints da API. Você pode criar, atualizar e recuperar informações de tags programaticamente.
+
+## Endpoints da API
+
+### Obter Histórico de Tags do Cliente
+
+Recupera o histórico completo de mudanças de tags para um cliente específico.
+
+<RequestExample>
+```bash cURL
+curl -X GET "https://api.example.com/customers/{customer_id}/tags/history" \
+  -H "Authorization: Bearer $API_KEY"
+```
+</RequestExample>
+
+### Atualizar Tags do Cliente
+
+Adicionar ou remover tags do perfil de um cliente.
+
+<RequestExample>
+```bash cURL
+curl -X PATCH "https://api.example.com/customers/{customer_id}/tags" \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "add": ["vip", "premium"],
+    "remove": ["trial"]
+  }'
+```
+</RequestExample>
+
+## Melhores Práticas
+
+- Use operações em lote quando possível para minimizar chamadas à API
+- Sempre valide os nomes das tags antes de aplicá-las
+- Mantenha registros de auditoria das mudanças de tags para conformidade
+- Use convenções de nomenclatura consistentes em toda sua organização
+
+## Referência da API
+
+Para documentação detalhada da API, consulte a seção [API playbook](/pt/api-reference/introduction) sobre endpoints de marcação.

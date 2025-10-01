@@ -1,44 +1,39 @@
 ---
 title: "Criar e gerenciar tags"
-description: "Defina tags organizacionais e mantenha a taxonomia limpa."
+description: "Um guia passo a passo sobre como visualizar, adicionar e gerenciar tags no perfil de um usuário."
 ---
 
-## Resumo
+### Acessar o Editor de Tags
 
-Tags agrupam perfis para filtragem e segmentação.
+Para começar a modificar as tags de um usuário, você deve primeiro abrir o modal de gerenciamento de tags a partir de seu perfil.
 
-<Steps>
-<Step title="Criar uma tag">
-  <RequestExample>
-  ```bash cURL
-  curl -X POST "https://api.example.com/tags" \
-    -H "Authorization: Bearer $API_KEY" \
-    -H "Content-Type: application/json" \
-    -d '{"name": "beta", "description": "Usuários de acesso antecipado"}'
-  ```
-  </RequestExample>
-</Step>
+1. Na página do perfil do usuário, localize a lista de tags atribuídas sob "Informações de contato".
+2. Clique no link **"Gerenciar tags"** diretamente abaixo das pílulas de tags.
 
-<Step title="Renomear ou arquivar uma tag">
-  <RequestExample>
-  ```bash cURL
-  curl -X PATCH "https://api.example.com/tags/{tag_id}" \
-    -H "Authorization: Bearer $API_KEY" \
-    -H "Content-Type: application/json" \
-    -d '{"name": "early-access"}'
-  ```
-  </RequestExample>
-</Step>
+Esta ação abrirá uma janela modal que por padrão mostra a aba **"Editar tags"**. Esta tela é o centro de controle onde você pode adicionar, remover e criar novas tags para o usuário.
 
-<Step title="Listar tags">
-  <RequestExample>
-  ```bash cURL
-  curl -X GET "https://api.example.com/tags" -H "Authorization: Bearer $API_KEY"
-  ```
-  </RequestExample>
-</Step>
-</Steps>
+![O modal "Editar tags" que abre após clicar em "Gerenciar tags"](../../images/tagsGuide/editTag.png)
 
-<Tip>
-Estabeleça convenções de nomenclatura para prevenir duplicatas e significados ambíguos.
-</Tip>
+### Criar uma Nova Tag
+
+Se uma tag que você precisa não existe, você pode criá-la rapidamente a partir do modal "Editar tags" sem sair do perfil do usuário.
+
+1. **Iniciar Criação:** Comece digitando o nome desejado para sua nova tag no campo **"Tags do usuário"**. Conforme você digita, se nenhuma tag existente corresponder ao seu texto, uma opção "Criar tag" aparecerá no menu suspenso.
+
+    ![Opção de criar tag aparecendo após digitar um novo nome](../../images/tagsGuide/creatingNewTag.png)
+
+2. **Definir Propriedades:** Clicar em "Criar tag" abre um novo modal. Aqui, você definirá o **Nome** da tag e selecionará uma **Cor da tag** da paleta disponível.
+
+    ![Modal de criação de nova tag com opções de nome e cor](../../images/tagsGuide/customizingTag.png)
+
+3. **Confirmar Criação:** Clique no botão **"+ Criar tag"** para finalizar o processo. A nova tag será criada no sistema e automaticamente atribuída ao perfil do usuário atual. Lembre-se de clicar em **"Salvar"** na janela principal de edição para aplicar a alteração.
+
+### Auditar Alterações com Histórico de Tags
+
+O modal de gerenciamento de tags também fornece um rastro de auditoria completo de todas as alterações feitas nas tags de um usuário ao longo do tempo. Para acessá-lo, clique na aba **"Histórico de tags"**.
+
+![Aba de histórico de tags mostrando um registro cronológico de alterações nas tags de um usuário](../../images/tagsGuide/tagHistory.png)
+
+* **Registro Cronológico:** O histórico é exibido como uma linha do tempo, com a alteração mais recente no topo.
+* **Entradas com Carimbo de Data/Hora:** Cada alteração é registrada com uma data e hora precisas, permitindo que você saiba exatamente quando uma modificação ocorreu.
+* **Estado das Tags:** Cada entrada mostra o conjunto completo de tags que o usuário tinha *após* essa alteração específica ser salva, fornecendo um rastro de auditoria completo de como seu perfil evoluiu.

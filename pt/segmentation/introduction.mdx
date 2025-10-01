@@ -1,0 +1,35 @@
+---
+title: "Introdução aos segmentos"
+description: "Construa segmentos dinâmicos a partir de variáveis de perfil e tags."
+---
+Nossa Plataforma de Dados de Clientes (CDP) atualmente consolida informações de usuários em perfis detalhados e calcula variáveis de decisão baseadas em interações. No entanto, carece de um componente de segmentação dinâmica que permita agrupar usuários de acordo com critérios específicos alinhados com os objetivos do cliente.
+
+As ferramentas de segmentação permitem que equipes de negócios identifiquem audiências-alvo, como "clientes de alto valor" ou "usuários propensos ao churn", e executem ações automatizadas com precisão. Isso suporta campanhas personalizadas e tomada de decisões estratégicas de forma ágil.
+
+## Estrutura de Regras
+
+As regras de segmentação são definidas usando uma sintaxe JSONLogic estendida (também usada no Motor de Regras de Negócio). Os operadores disponíveis incluem:
+
+| Operador | Tipo       | Descrição                                        |
+| -------- | ---------- | -------------------------------------------------- |
+| AND      | Lógico     | Verdadeiro se todas as regras no array forem satisfeitas       |
+| OR       | Lógico     | Verdadeiro se pelo menos uma regra no array for satisfeita|
+| NOT      | Lógico     | Verdadeiro se a regra aninhada não for satisfeita           |
+| =        | Aritmético | Igual a                                           |
+| &gt;     | Aritmético | Maior que                                       |
+| &lt;     | Aritmético | Menor que                                          |
+| &gt;=    | Aritmético | Maior ou igual                                   |
+| &lt;=    | Aritmético | Menor ou igual                                      |
+
+Variáveis e tags são referenciadas usando:
+
+| Palavra-chave | Descrição                        |
+|---------------|------------------------------------|
+| VAR     | Refere-se a uma variável de decisão na regra |
+| TAG     | Refere-se a uma tag na regra        |
+
+## Lógica de Aninhamento
+
+Suporta um nível de aninhamento para operadores lógicos.
+
+Permite regras como A AND (B OR C) ou A OR (B AND C) mas não aninhamento mais profundo.

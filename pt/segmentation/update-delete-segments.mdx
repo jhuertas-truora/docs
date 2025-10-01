@@ -3,36 +3,6 @@ title: "Atualizar e excluir segmentos"
 description: "Modifique critérios de segmento ou exclua segmentos que não precise mais."
 ---
 
-## Resumo
-
-Atualize nomes, descrições e critérios de segmento. Exclua segmentos quando obsoletos.
-
-<Steps>
-<Step title="Atualizar um segmento">
-  <RequestExample>
-  ```bash cURL
-  curl -X PATCH "https://api.example.com/segments/{segment_id}" \
-    -H "Authorization: Bearer $API_KEY" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "name": "Usuários beta pro (US)",
-      "criteria": {"all": [{"variables.country": {"eq": "US"}}]}
-    }'
-  ```
-  </RequestExample>
-</Step>
-
-<Step title="Excluir um segmento">
-  <RequestExample>
-  ```bash cURL
-  curl -X DELETE "https://api.example.com/segments/{segment_id}" \
-    -H "Authorization: Bearer $API_KEY"
-  ```
-  </RequestExample>
-</Step>
-</Steps>
-
 <Warning>
-Excluir um segmento remove critérios salvos mas nunca exclui perfis.
-Certifique-se de que qualquer automação que dependa do segmento seja atualizada.
+Esta página está atualmente em construção. O conteúdo e os exemplos estão sendo finalizados.
 </Warning>
