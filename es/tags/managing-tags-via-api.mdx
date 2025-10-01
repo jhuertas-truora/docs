@@ -1,48 +1,69 @@
----
-title: "Gestionar etiquetas vía API"
-description: "Aprende cómo gestionar etiquetas de clientes programáticamente a través de la API."
----
+## Guía para Desarrolladores: Gestionar Etiquetas de Perfil vía API
 
-## Resumen
+Esta guía describe el flujo de trabajo de dos pasos de la API para gestionar programáticamente las etiquetas asignadas a un perfil de usuario específico. Todo el proceso, desde verificar el estado actual de un usuario hasta modificar sus etiquetas, puede ser completamente automatizado usando dos endpoints clave.
 
-Esta guía cubre cómo gestionar etiquetas de clientes usando los endpoints de la API. Puedes crear, actualizar y recuperar información de etiquetas programáticamente.
+### Paso 1: Verificar el Estado Actual de Etiquetas de un Perfil
 
-## Endpoints de la API
+Antes de agregar o eliminar etiquetas, es una mejor práctica recuperar el estado actual del perfil para evitar operaciones redundantes y tener un rastro de auditoría claro.
 
-### Obtener Historial de Etiquetas del Cliente
+El endpoint [Obtener historial de etiquetas del cliente](/es/api-reference/endpoint/tags/getCustomerTagsHistory) proporciona un registro cronológico de todos los cambios de etiquetas para un usuario, con la entrada más reciente representando su conjunto actual de etiquetas asignadas.
 
-Recupera el historial completo de cambios de etiquetas para un cliente específico.
+* **Endpoint:** `GET /getCustomerTagsHistory`
+* **Caso de Uso:** Un servicio backend necesita verificar si un usuario con ID `USP1138` ya está marcado con la etiqueta "Riesgo de Abandono" antes de activar un flujo de trabajo de retención. Una llamada a este endpoint proporcionará esa información.
 
-<RequestExample>
-```bash cURL
-curl -X GET "https://api.example.com/customers/{customer_id}/tags/history" \
-  -H "Authorization: Bearer $API_KEY"
-```
-</RequestExample>
+<InfoBox type="info">
+  **Documentación de Referencia**
+  <br />
+  Para parámetros detallados y ejemplos de respuesta, consulta la documentación completa en **[Obtener historial de etiquetas del cliente](/es/api-reference/endpoint/tags/getCustomerTagsHistory)**.
+</InfoBox>
 
-### Actualizar Etiquetas del Cliente
+### Paso 2: Agregar o Eliminar Etiquetas de un Perfil
 
-Agregar o eliminar etiquetas del perfil de un cliente.
+Todas las modificaciones a las etiquetas asignadas de un usuario son manejadas por el endpoint [Actualizar Etiquetas del Cliente](/es/api-reference/endpoint/tags/updateCustomerTags). Este único endpoint se usa para realizar tanto acciones de "agregar" como de "eliminar".
 
-<RequestExample>
-```bash cURL
-curl -X PATCH "https://api.example.com/customers/{customer_id}/tags" \
-  -H "Authorization: Bearer $API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "add": ["vip", "premium"],
-    "remove": ["trial"]
-  }'
-```
-</RequestExample>
+* **Endpoint:** `POST /updateCustomerTags`
+* **Caso de Uso:** Un representante de ventas cierra un trato en el CRM. El estado del prospecto se actualiza de "Prospecto" a "Cliente". Un webhook del CRM activa un proceso automatizado en tu backend.
 
-## Mejores Prácticas
+#### Creación Automática de Etiquetas (Lógica Upsert)
 
-- Usa operaciones por lotes cuando sea posible para minimizar las llamadas a la API
-- Siempre valida los nombres de las etiquetas antes de aplicarlas
-- Mantén registros de auditoría de los cambios de etiquetas para cumplimiento
-- Usa convenciones de nomenclatura consistentes en toda tu organización
+Este endpoint incluye funcionalidad inteligente de "upsert" (actualizar o insertar) para simplificar la gestión de etiquetas. El comportamiento es el siguiente:
 
-## Referencia de la API
+* **Al agregar una etiqueta que no existe:** Si envías una acción `"add"` con un `name` de etiqueta que aún no está en el sistema, el endpoint **creará automáticamente esa etiqueta primero** y luego la asignará al perfil. No necesitas una llamada de "crear" separada.
+* **Al agregar una etiqueta que ya existe:** Si envías una acción `"add"` con un `name` de etiqueta que ya existe, el endpoint **no creará un duplicado**. Encontrará la etiqueta existente y simplemente la asignará al perfil.
+* **Al eliminar una etiqueta:** La acción `"remove"` solo desvincula la etiqueta del perfil especificado. **No elimina la etiqueta** del sistema general. La etiqueta seguirá estando disponible para ser asignada a otros perfiles.
 
-Para documentación detallada de la API, consulta la sección de [API playbook](/es/api-reference/introduction) sobre endpoints de etiquetado.
+#### Caso de Uso: Agregar una Etiqueta
+
+Para asignar una etiqueta a un usuario, envía una solicitud especificando el ID del usuario y los detalles de la etiqueta que quieres agregar con la acción `"add"`.
+
+* **Ejemplo:** Asignar la etiqueta "Soporte Prioritario" a un cliente. Si "Soporte Prioritario" no existe, esta llamada la creará y luego la asignará.
+    ```json
+    // POST /updateCustomerTags
+    {
+      "action": "add",
+      "name": "Soporte Prioritario",
+      "color": "#e67e22",
+      "source": "external-system",
+      "source_type": "Zendesk"
+    }
+    ```
+
+#### Caso de Uso: Eliminar una Etiqueta
+
+Para eliminar una etiqueta de un usuario, especifica el nombre de la etiqueta y la acción `"remove"`.
+
+* **Ejemplo:** Eliminar la etiqueta "Prospecto Caliente" del perfil de un cliente.
+    ```json
+    // POST /updateCustomerTags
+    {
+      "action": "remove",
+      "name": "Prospecto Caliente",
+      "source": "profile"
+    }
+    ```
+
+<InfoBox type="info">
+  **Documentación de Referencia**
+  <br />
+  Para ver la estructura completa de la solicitud, parámetros y ejemplos, consulta la documentación en **[Actualizar Etiquetas del Cliente](/es/api-reference/endpoint/tags/updateCustomerTags)**.
+</InfoBox>
