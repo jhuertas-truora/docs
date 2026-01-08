@@ -37,8 +37,7 @@
             "pages": [
               "segmentation/introduction",
               "segmentation/create-segments",
-              "segmentation/get-segment-profiles",
-              "segmentation/update-delete-segments"
+              "segmentation/get-segment-profiles"
             ]
           },
           {
@@ -76,8 +75,7 @@
                 "pages": [
                   "segmentation/introduction",
                   "segmentation/create-segments",
-                  "segmentation/get-segment-profiles",
-                  "segmentation/update-delete-segments"
+                  "segmentation/get-segment-profiles"
                 ]
               },
               {
@@ -151,9 +149,7 @@
             "pages": [
               "es/segmentation/introduction",
               "es/segmentation/create-segments",
-              "es/segmentation/get-segment-profiles",
-              "es/segmentation/update-delete-segments"
-            ]
+              "es/segmentation/get-segment-profiles"            ]
           },
           {
             "group": "Profile Management",
@@ -190,8 +186,7 @@
                 "pages": [
                   "es/segmentation/introduction",
                   "es/segmentation/create-segments",
-                  "es/segmentation/get-segment-profiles",
-                  "es/segmentation/update-delete-segments"
+                  "es/segmentation/get-segment-profiles"
                 ]
               },
               {
@@ -264,8 +259,7 @@
             "pages": [
               "pt/segmentation/introduction",
               "pt/segmentation/create-segments",
-              "pt/segmentation/get-segment-profiles",
-              "pt/segmentation/update-delete-segments"
+              "pt/segmentation/get-segment-profiles"
             ]
           },
           {
@@ -303,8 +297,7 @@
                 "pages": [
                   "pt/segmentation/introduction",
                   "pt/segmentation/create-segments",
-                  "pt/segmentation/get-segment-profiles",
-                  "pt/segmentation/update-delete-segments"
+                  "pt/segmentation/get-segment-profiles"
                 ]
               },
               {
