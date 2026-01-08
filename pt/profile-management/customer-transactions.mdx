@@ -3,7 +3,30 @@ title: "Transações de Clientes"
 description: "Acesse o histórico e detalhes de transações para perfis de clientes."
 ---
 
-<Warning>
-Esta página está atualmente em construção. O conteúdo e os exemplos estão sendo finalizados.
-</Warning>
+---
+title: "Transacciones del cliente"
+description: "Accede al historial de transacciones y detalles de los perfiles de clientes."
+---
+
+El módulo de Transacciones del Cliente representa la capa de comportamiento de nuestro CDP. Está diseñado para capturar, persistir y estructurar el historial cronológico de las interacciones de un usuario.
+
+En esta arquitectura, una "Transacción" se define como cualquier evento interno significativo generado dentro de nuestro ecosistema.
+
+## Tipos de Transacciones Soportadas
+
+Dentro de nuestro Modelo de Datos de Comportamiento del Cliente, los siguientes eventos internos se clasifican y almacenan como transacciones:
+
+- **Interacciones de Chat:** Registros de sesiones de comunicación entre el usuario y el sistema (o agentes de soporte), incluyendo horas de inicio de sesión e intercambios de mensajes.
+
+- **Firmas de Documentos:** Eventos generados cuando un usuario firma digitalmente un contrato, acuerdo o documento legal dentro de la plataforma.
+
+- **Validaciones de Identidad:** Registros relacionados con procesos de Conozca a su Cliente (KYC), como verificación de identificación exitosa, chequeos de reconocimiento facial o carga de documentos.
+
+- **Verificaciones de Antecedentes (Background Checks):** Eventos que marcan la ejecución y finalización de chequeos de seguridad, crédito o antecedentes realizados al usuario.
+
+- **Envíos de Formularios:** Puntos de datos generados cuando un usuario completa y envía un formulario interno, como cuestionarios de incorporación (onboarding), encuestas o formularios de generación de leads.
+
+- **Eventos de Etiquetado (Tags):** Transacciones que asignan una etiqueta o atributo específico a un perfil de usuario basado en su comportamiento o lógica interna (ej. marcar a un usuario como "Verificado" o "Alto Riesgo").
+
+> **Nota sobre el Alcance:** Este modelo está estrictamente limitado a transacciones internas del sistema. No ingiere ni almacena libros de transacciones de terceros externos. Todos los eventos registrados se originan directamente de la interacción del usuario con los productos y servicios de Truora.
 

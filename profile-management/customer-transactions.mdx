@@ -3,6 +3,10 @@ title: "Customer transactions"
 description: "Access transaction history and details for customer profiles."
 ---
 
+---
+title: "Customer transactions"
+description: "Access transaction history and details for customer profiles."
+---
 
 The Customer Transactions module represents the behavioral layer of our CDP. It is designed to capture, persist, and structure the chronological history of a user's interactions.
 
@@ -12,16 +16,16 @@ In this architecture, a "Transaction" is defined as any significant internal eve
 
 Within our Customer Behavioral Data Model, the following internal events are classified and stored as transactions:
 
-- Chat Interactions Records of communication sessions between the user and the system (or support agents), including session start times and message exchanges.
+- **Chat Interactions:** Records of communication sessions between the user and the system (or support agents), including session start times and message exchanges.
 
-- Document Signatures Events generated when a user digitally signs a contract, agreement, or legal document within the platform.
+- **Document Signatures:** Events generated when a user digitally signs a contract, agreement, or legal document within the platform.
 
-- Identity Validations Records related to Know Your Customer (KYC) processes, such as successful ID verification, facial recognition checks, or document uploads.
+- **Identity Validations:** Records related to Know Your Customer (KYC) processes, such as successful ID verification, facial recognition checks, or document uploads.
 
-- Background Checks Events marking the execution and completion of security, credit, or background screenings performed on the user.
+- **Background Checks:** Events marking the execution and completion of security, credit, or background screenings performed on the user.
 
-- Form Submissions Data points generated when a user completes and submits an internal form, such as onboarding questionnaires, surveys, or lead generation forms.
+- **Form Submissions:** Data points generated when a user completes and submits an internal form, such as onboarding questionnaires, surveys, or lead generation forms.
 
-- Tagging Events transactions that assign a specific label or attribute to a user profile based on their behavior or internal logic (e.g., marking a user as "Verified" or "High Risk").
+- **Tagging Events:** Transactions that assign a specific label or attribute to a user profile based on their behavior or internal logic (e.g., marking a user as "Verified" or "High Risk").
 
-Note on Scope: This model is strictly limited to internal system transactions. It does not ingest or store external third-party transaction ledgers. All recorded events originate directly from the user's interaction with Truora products and services.
+> **Note on Scope:** This model is strictly limited to internal system transactions. It does not ingest or store external third-party transaction ledgers. All recorded events originate directly from the user's interaction with Truora products and services.
